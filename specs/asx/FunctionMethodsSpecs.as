@@ -26,8 +26,14 @@ package asx {
           // the typing saving is negligible, *sigh* -- unless we include aliases like $i = FunctionMethods.toIterator;          
           var isGreaterThan10Iterator:Function = FunctionMethods.toIterator(isGreaterThan10);
 
-          assertThat([0, 10, 203, 30].filter(isGreaterThan10Iterator), equalTo([20, 30]))
+          assertThat([0, 10, 20, 30].filter(isGreaterThan10Iterator), equalTo([20, 30]))
         });
+      });
+      
+      describe('invoke', function():void {
+        
+        
+        
       });
     });
   }

@@ -194,14 +194,14 @@ package asx
      * @param iterator Function matching function(value:Object):int; indicating which bucket the item should be placed into.
      * @return Array of Arrays, containing value as determined by iterator function. 
      */
-    static public function partiionBy(array:Array, iterator:Function):Array
+    static public function partitionBy(array:Array, iterator:Function):Array
     {
       var partitions:Array = [];
       array.forEach(function(value:Object, i:int, a:Array):void {
         var index:int = iterator(value);
         var partition:Array = partitions[index];
         if (!partition) {
-          partition = partition[index] = [];
+          partition = partitions[index] = [];
         }
         partition.push(value);
       });
@@ -263,6 +263,20 @@ package asx
       return array.map(function(item:Object, i:int, a:Array):Object {
         return item[method].apply(item, args);
       });
+    }
+    
+    /**
+     * 
+     */ 
+    static public function head(array:Array):Object {
+      return array[0];
+    }
+    
+    /**
+     * 
+     */
+    static public function tail(array:Array):Array {
+      return array.slice(1);
     }
   }
 }

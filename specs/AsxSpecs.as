@@ -15,12 +15,10 @@ package {
       super();
 
       ArrayMethodsSpecs();
+      // DateMethodsSpecs();
       FunctionMethodsSpecs();
       NumberMethodsSpecs();
-      // ObjectMethodsSpecs();
       StringMethodsSpecs();
-      
-      WithSpecs();
       
       run(Spec.spec.currentExampleGroup);
     }

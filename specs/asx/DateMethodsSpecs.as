@@ -4,7 +4,7 @@ package asx {
   import org.hamcrest.*;
 
   public function DateMethodsSpecs():void {
-  
+    
     describe('DateMethods', function():void {
       
       var dateWithTime:Date;

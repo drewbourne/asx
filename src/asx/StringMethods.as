@@ -60,9 +60,33 @@ package asx
     /**
      * 
      */
-    static public function trim(value:String):String 
+    static public function trim(value:String):String
     {
-      
+      return trimLeft(trimRight(value));
+    }
+    
+    /**
+     * 
+     */
+    static public function trimLeft(value:String):String
+    {
+      return value.replace(/^\s+/, '');
+    }
+    
+    /**
+     * 
+     */
+    static public function trimRight(value:String):String
+    {
+      return value.replace(/\s+$/, '');
+    }
+    
+    /**
+     * Trims the String then replaces sequences of whitespace characters with a single space
+     */
+    static public function normalize(value:String):String 
+    {
+      return trim(value.replace(/[\s]+/g, ' '));
     }
   }
 }

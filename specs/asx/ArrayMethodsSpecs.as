@@ -117,7 +117,7 @@ package asx {
       describe('invoke', function():void {
         it('invokes the named method on each item of the array and returns the results', function():void {
           assertThat(ArrayMethods.invoke([1, 2, 3], 'toString'), equalTo(["1", "2", "3"]));
-        }):
+        });
         it('invokes the named method and passes in arguments', function():void {
           assertThat(ArrayMethods.invoke([1, 2, 3], 'toString', 2), equalTo(["1", "10", "11"]));
         });
