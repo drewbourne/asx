@@ -5,10 +5,29 @@ package asx {
 
   public function ArrayMethodsSpecs():void {
     
+    /*var startTimes:Array = pluck(pluck(pluck([..], 'scheduleEntry'), 'startDate'), 'time');
+    var startTimes:Array = pluck([...], ['scheduleEntry', 'startDate', 'time']);
+    var startTimes:Array = pluck([...], 'scheduleEntry.startDate.time');*/
+    
     describe('ArrayMethods', function():void {
       describe('pluck', function():void {
         it('returns an array of the value of the given field for each item', function():void {
           assertThat(ArrayMethods.pluck('a bee seady ee effigy'.split(' '), 'length'), equalTo([1, 3, 5, 2, 6]));
+        });
+        it('follows a chain of fields from a String', function():void {
+          assertThat( ArrayMethods.pluck(
+              [{ outer: { middle: { inner: { value: 3 }}}}], 
+              'outer.middle.inner.value'),
+              equalTo([3]));
+        });
+        it('follows a chain of fields from an Array', function():void {
+          assertThat( ArrayMethods.pluck(
+              [{ outer: { middle: { inner: { value: 3 }}}}], 
+              ['outer', 'middle', 'inner', 'value']),
+              equalTo([3]))
+        });
+        it('plucks methods too', function():void {
+          assertThat( ArrayMethods.pluck([1, 10, 100], 'toString().length'), equalTo([1, 2, 3]));
         });
       });
 
@@ -19,8 +38,16 @@ package asx {
           var sum:Function = function(acc:Number, value:Number):Number {
             return acc + value;
           };
+          var sumWithAllArgs:Function = function(acc:Number, value:Number, i:int, a:Array):Number {
+            return acc + value;
+          };
+          var sumWithRestArgs:Function = function(acc:Number, value:Number, ...rest):Number {
+            return acc + value;
+          };
 
           assertThat(ArrayMethods.inject(memo, values, sum), equalTo(10));
+          assertThat(ArrayMethods.inject(memo, values, sumWithAllArgs), equalTo(10));
+          assertThat(ArrayMethods.inject(memo, values, sumWithRestArgs), equalTo(10));
         });
       });
 
@@ -109,7 +136,6 @@ package asx {
           var finder:Function = function(n:Number, i:int, a:Array):Boolean {
             return n > 4;
           };
-
           assertThat(ArrayMethods.detect(values, finder), equalTo(5));
         });
       });
@@ -134,7 +160,7 @@ package asx {
       });
       
       describe('tail', function():void {
-        it('returns an array except for the first time', function():void {
+        it('returns an array without the first item', function():void {
           assertThat(ArrayMethods.tail([2, 1, 0]), equalTo([1, 0]));
         });
         

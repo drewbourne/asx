@@ -20,6 +20,8 @@ package {
       NumberMethodsSpecs();
       StringMethodsSpecs();
       
+      FunctionalSpecs();
+      
       run(Spec.spec.currentExampleGroup);
     }
   }

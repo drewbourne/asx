@@ -6,15 +6,29 @@ package asx
      * Extracts the value of a field from every item in the array. 
      *   
      * @param array <code>Array</code> to iterate over and pluck values from
-     * @param field Name of the field to extract the value of
+     * @param field Name of the field to extract the value of, or chain of fields as String
      * @return <code>Array</code> of the the field values for every item in the source <code>Array</code>
      */
-    static public function pluck(array:Array, field:String):Array
+    static public function pluck(array:Array, field:Object):Array
     {
-      var result:Array = array.map(function(value:Object, i:int, a:Array):Object {
-        return value.hasOwnProperty(field) ? value[field] : null;
-      });
-      return result;
+      var chain:Array = field is Array? field as Array : String(field).split('.');
+      return inject(array, chain, pluckIt) as Array;
+    }
+    
+    static protected function pluckIt(array:Array, field:String):Array {
+      var isMethod:Boolean = !!field.match(/^.+\(\)$/);
+      field = isMethod ? field.slice(0, -2) : field;
+      return array.map( isMethod ? pluckMethod(field) : pluckProperty(field) );
+    }
+    
+    static protected function pluckMethod(field:String):Function 
+    {
+      return function(value:Object, i:int, a:Array):Object { return value[field](); };
+    }
+    
+    static protected function pluckProperty(field:String):Function 
+    {
+      return function(value:Object, i:int, a:Array):Object { return value[field]; };
     }
     
     /**
@@ -28,7 +42,9 @@ package asx
     static public function inject(memo:Object, array:Array, iterator:Function):Object
     {
       array.forEach(function(value:Object, i:int, a:Array):void {
-        memo = iterator(memo, value);
+        // send only enough parameters as the iterator function can handle
+        // bah, except when its a ...rest function *sigh*
+        memo = iterator.apply(null, [memo, value, i, a].slice(0, iterator.length));
       });
       return memo;
     }

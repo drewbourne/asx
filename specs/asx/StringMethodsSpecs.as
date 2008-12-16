@@ -8,7 +8,6 @@ package asx {
     describe('StringMethods', function():void {
       describe('repeat', function():void {
         it('repeats the given string the given number of times', function():void {
-          
           assertThat(StringMethods.repeat('', 0), equalTo(''));
           assertThat(StringMethods.repeat('', 1), equalTo(''));
           assertThat(StringMethods.repeat(' ', 0), equalTo(''));
