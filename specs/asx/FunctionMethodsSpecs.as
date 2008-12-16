@@ -7,7 +7,7 @@ package asx {
   
     describe('FunctionMethods', function():void {
       describe('iterator', function():void {
-        it('should create a function that can be used with the Array methods', function():void {
+        it('creates a function that can be used with the Array methods', function():void {
 
           // TODO we cannot check the arity of the returned function so there is not much point doing this
           /*expect(FunctionMethods.toIterator, function():void {}).should(eq, null);

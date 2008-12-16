@@ -7,15 +7,13 @@ package asx {
     
     describe('ArrayMethods', function():void {
       describe('pluck', function():void {
-        it('should return an array of the value of the given field for each item', function():void {
-
+        it('returns an array of the value of the given field for each item', function():void {
           assertThat(ArrayMethods.pluck('a bee seady ee effigy'.split(' '), 'length'), equalTo([1, 3, 5, 2, 6]));
         });
       });
 
       describe('inject', function():void {
-        it('should pass the memo and each item individually to the iterator function and return the memo', function():void {
-
+        it('passes the memo and each item individually to the iterator function and return the memo', function():void {
           var memo:Number = 0;
           var values:Array = [1, 2, 3, 4];
           var sum:Function = function(acc:Number, value:Number):Number {
@@ -27,8 +25,7 @@ package asx {
       });
 
       describe('unfold', function():void {
-        it('should work for simple values', function():void {
-
+        it('works for simple values', function():void {
           var p:Function = function(n:Number):Boolean { return n > 0; };
           var t:Function = function(n:Number):Number { return n - 2; };
           var i:Function = t;
@@ -36,7 +33,7 @@ package asx {
           assertThat(ArrayMethods.unfold(10, p, t, i), equalTo([8, 6, 4, 2, 0]));
         });
 
-        it('should work for complex values', function():void {
+        it('works for complex values', function():void {
           var parent:Object = { values: [1, 2, 3] };
           var child1:Object = { parent: parent, values: [4, 5, 6] };
           var child2:Object = { parent: child1, values: [7, 8, 9] };
@@ -50,15 +47,13 @@ package asx {
       });
 
       describe('flatten', function():void {
-        it('should take a nested array and return a one dimensional array', function():void {
-
+        it('takes a nested array and return a one dimensional array', function():void {
           assertThat(ArrayMethods.flatten([1, 2, [3, 4, 5, [6], [7, 8]], 9]), equalTo([1, 2, 3, 4, 5, 6, 7, 8, 9]));
         });
       })
 
       describe('zip', function():void {
-        it('should take arrays arguments and return an array where each entry is an array of the values at that index in the argument arrays', function():void {
-
+        it('takes arrays arguments and return an array where each entry is an array of the values at that index in the argument arrays', function():void {
           assertThat(ArrayMethods.zip([1, 2, 3], ['a', 'b', 'c']), 
                      equalTo([[1, 'a'], [2, 'b'], [3, 'c']]));
 
@@ -68,8 +63,7 @@ package asx {
       });
 
       describe('compact', function():void {
-        it('should return an array without null values', function():void {
-
+        it('returns an array without null values', function():void {
           assertThat(ArrayMethods.compact([null]), equalTo([]));
           assertThat(ArrayMethods.compact([null, null, 3, null]), equalTo([3]));
           assertThat(ArrayMethods.compact(['toast', 'waffles', null, 'crumpets']), equalTo(['toast', 'waffles', 'crumpets']));
@@ -77,16 +71,14 @@ package asx {
       });
 
       describe('unique', function():void {
-        it('should return an array without duplicate values', function():void {
-
+        it('returns an array without duplicate values', function():void {
           assertThat(ArrayMethods.unique([1, 1, 2, 3, 5]), equalTo([1, 2, 3, 5]));
           assertThat(ArrayMethods.unique(['one', 'two', 'two', 'two']), equalTo(['one', 'two']));
         });
       });
 
       describe('partition', function():void {
-        it('should separate values on the boolean return value of the iterator function', function():void {
-
+        it('separates values on the boolean return value of the iterator function', function():void {
           var greaterThan3:Function = function(value:Number):Boolean { return value >3 };
 
           assertThat(ArrayMethods.partition([1, 2, 3, 4, 5], greaterThan3), 
@@ -94,36 +86,61 @@ package asx {
         });
       });
 
-      // bucket / distribute / ?
-      describe('buckets', function():void {
-        it('should separate values on the return value of the iterator function', function():void {
-
+      describe('partitionBy', function():void {
+        it('separates values on the numeric return value of the iterator function', function():void {
           var mod3:Function = function(value:Number):int { return value % 3; };
 
-          assertThat(ArrayMethods.buckets([1, 2, 3, 4, 5, 6, 7, 8, 9], mod3),
+          assertThat(ArrayMethods.partitionBy([1, 2, 3, 4, 5, 6, 7, 8, 9], mod3),
                      equalTo([[3, 6, 9], [1, 4, 7], [2, 5, 8]]));
         });    
       });
 
       describe('contains', function():void {
-        it('should be true if the array contains the value', function():void {
-
+        it('returns true if the array contains the value', function():void {
           assertThat(ArrayMethods.contains([], 0), equalTo(false));
           assertThat(ArrayMethods.contains([1, 2, 3], 0), equalTo(false));
           assertThat(ArrayMethods.contains([1, 2, 3], 3), equalTo(true));
         });
       });
 
-      // find
-      describe('find', function():void {
-        it('should return the first matching item', function():void {
-
+      describe('detect', function():void {
+        it('returns the first matching item', function():void {
           var values:Array = [1, 1, 2, 3, 5, 8];
           var finder:Function = function(n:Number, i:int, a:Array):Boolean {
             return n > 4;
           };
 
-          assertThat(ArrayMethods.find(values, finder), equalTo(5));
+          assertThat(ArrayMethods.detect(values, finder), equalTo(5));
+        });
+      });
+      
+      describe('invoke', function():void {
+        it('invokes the named method on each item of the array and returns the results', function():void {
+          assertThat(ArrayMethods.invoke([1, 2, 3], 'toString'), equalTo(["1", "2", "3"]));
+        }):
+        it('invokes the named method and passes in arguments', function():void {
+          assertThat(ArrayMethods.invoke([1, 2, 3], 'toString', 2), equalTo(["1", "10", "11"]));
+        });
+      });
+      
+      describe('head', function():void {
+        it('returns the first item in the array', function():void {
+          assertThat(ArrayMethods.head([2, 1, 0]), equalTo(2));
+        });
+        
+        it('returns null if the array is empty', function():void {
+          assertThat(ArrayMethods.head([]), nullValue());
+        });
+      });
+      
+      describe('tail', function():void {
+        it('returns an array except for the first time', function():void {
+          assertThat(ArrayMethods.tail([2, 1, 0]), equalTo([1, 0]));
+        });
+        
+        it('returns an empty array if length is 0 or 1', function():void {
+          assertThat(ArrayMethods.tail([]), []);
+          assertThat(ArrayMethods.tail([1]), []);
         });
       });
     });

@@ -56,5 +56,13 @@ package asx
 
       return value + padding;
     }
+    
+    /**
+     * 
+     */
+    static public function trim(value:String):String 
+    {
+      
+    }
   }
 }

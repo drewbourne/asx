@@ -188,22 +188,24 @@ package asx
     }
 
     /**
-     * Partition an Array into many divisions. For lack of a better name this is called #buckets. 
+     * Partition an Array into many divisions. 
      *  
      * @param array Array of items to partition
      * @param iterator Function matching function(value:Object):int; indicating which bucket the item should be placed into.
      * @return Array of Arrays, containing value as determined by iterator function. 
      */
-    static public function buckets(array:Array, iterator:Function):Array
+    static public function partiionBy(array:Array, iterator:Function):Array
     {
-      var buckets:Array = [];
+      var partitions:Array = [];
       array.forEach(function(value:Object, i:int, a:Array):void {
         var index:int = iterator(value);
-        var bucket:Array = buckets[index];
-        if (!bucket) bucket = buckets[index] = [];
-        bucket.push(value);
+        var partition:Array = partitions[index];
+        if (!partition) {
+          partition = partition[index] = [];
+        }
+        partition.push(value);
       });
-      return buckets;
+      return partitions;
     }
     
     /**
@@ -232,7 +234,7 @@ package asx
      * @param iterator function matching: function(item:Object, i:int, a:Array):Boolean; indicating if the item matches. 
      * @return Object
      */
-    static public function find(array:Array, iterator:Function):Object 
+    static public function detect(array:Array, iterator:Function):Object 
     {
       var result:Object = null;
       var item:Object = null;
@@ -251,6 +253,16 @@ package asx
       }
       
       return result;
+    }
+    
+    /**
+     * Invokes a method on each item the array.  
+     */
+    static public function invoke(array:Array, method:String, ...args):Array 
+    {  
+      return array.map(function(item:Object, i:int, a:Array):Object {
+        return item[method].apply(item, args);
+      });
     }
   }
 }

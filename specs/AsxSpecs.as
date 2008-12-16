@@ -2,6 +2,8 @@ package {
   
   import asx.*;
   
+  import sandbox.*;
+  
   import spectacular.framework.SpectacularSpecRunner;
   import spectacular.framework.Spec;
   import spectacular.framework.TraceSpecReporter;
@@ -16,7 +18,9 @@ package {
       FunctionMethodsSpecs();
       NumberMethodsSpecs();
       // ObjectMethodsSpecs();
-      // StringMethodsSpecs();
+      StringMethodsSpecs();
+      
+      WithSpecs();
       
       run(Spec.spec.currentExampleGroup);
     }
