@@ -255,7 +255,6 @@ package asx
       var result:Object = null;
       var item:Object = null;
       
-      // TODO: is this safe? in that it does not experience the same issues as enumerable properties in javascript
       // for each (var o in array) { ... }
       
       // FIXME do we really want to iterate over every element in sparse arrays?
