@@ -6,6 +6,50 @@ package asx {
   public function FunctionMethodsSpecs():void {
   
     describe('FunctionMethods', function():void {
+      describe('partial', function():void {
+        it("should be awesome", function():void {
+          
+          function list(a:int, b:int, c:int, d:int):Array {
+            return [a, b, c, d];
+          };
+          
+          // aliases for brevity
+          var partial:Function = FunctionMethods.partial;
+          var _:* = undefined;
+          
+          assertThat(
+            partial(list, 1, _, 2, _)(3, 4), 
+            equalTo([1, 3, 2, 4]));
+          assertThat(
+            partial(list, 1, _, _, 2)(3, 4), 
+            equalTo([1, 3, 4, 2]));
+          assertThat(
+            partial(list, _, _, _, _)(1, _, _, 2)(3, 4), 
+            equalTo([1, 3, 4, 2]));
+          assertThat(
+            partial(list, _, _, _, _)(1)(3, _, 4)(2), 
+            equalTo([1, 3, 2, 4]));
+        });
+      });
+      
+      describe('curry', function():void {
+        it("creates a new function that applies the original arguments and then the new arguments", function():void {
+          
+        });
+      });
+      
+      describe("rcurry", function():void {
+        
+      });
+      
+      describe("ncurry", function():void {
+        
+      });
+      
+      describe("rncurry", function():void {
+        
+      });
+      
       describe('iterator', function():void {
         it('creates a function that can be used with the Array methods', function():void {
 
@@ -28,12 +72,6 @@ package asx {
 
           assertThat([0, 10, 20, 30].filter(isGreaterThan10Iterator), equalTo([20, 30]))
         });
-      });
-      
-      describe('invoke', function():void {
-        
-        
-        
       });
     });
   }

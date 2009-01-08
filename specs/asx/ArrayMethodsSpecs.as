@@ -5,10 +5,6 @@ package asx {
 
   public function ArrayMethodsSpecs():void {
     
-    /*var startTimes:Array = pluck(pluck(pluck([..], 'scheduleEntry'), 'startDate'), 'time');
-    var startTimes:Array = pluck([...], ['scheduleEntry', 'startDate', 'time']);
-    var startTimes:Array = pluck([...], 'scheduleEntry.startDate.time');*/
-    
     describe('ArrayMethods', function():void {
       describe('pluck', function():void {
         it('returns an array of the value of the given field for each item', function():void {
