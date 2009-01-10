@@ -62,6 +62,18 @@ package asx
         return iterator.apply(null, [value, i, a].slice(0, arity));
       };
     }
+    
+    
+    // combinators
+    public static function K(value:Object):Function {
+      // accept rest so we can call this function with any arguments without error
+      return function(...rest):Object { 
+        return value;
+      };
+    }
+    
+    // swap
+    // dup
   }
   
 }

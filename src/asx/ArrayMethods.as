@@ -1,40 +1,7 @@
-package asx
-{
-  public class ArrayMethods
-  {
-    /**
-     * Extracts the value of a field from every item in the array. 
-     *   
-     * @param array <code>Array</code> to iterate over and pluck values from
-     * @param field Name of the field to extract the value of, or chain of fields as String
-     * @return <code>Array</code> of the the field values for every item in the source <code>Array</code>
-     * @example
-     * <listing version="3.0">
-     *  
-     * </listing>
-     */
-    static public function pluck(array:Array, field:Object):Array
-    {
-      var chain:Array = field is Array? field as Array : String(field).split('.');
-      return inject(array, chain, pluckIt) as Array;
-    }
+package asx {
+  public class ArrayMethods {
     
-    /**
-     * @private
-     */
-    static protected function pluckIt(array:Array, field:String):Array {
-      var isMethod:Boolean = !!field.match(/^.+\(\)$/);
-      field = isMethod ? field.slice(0, -2) : field;
-      return array.map( isMethod ? pluckMethod(field) : pluckProperty(field) );
-    }
-    
-    /**
-     * @private
-     */
-    static protected function pluckMethod(field:String):Function 
-    {
-      return function(value:Object, i:int, a:Array):Object { return value[field](); };
-    }
+    public static const pluck:Function = asx.array.pluck;
     
     /**
      * @private
@@ -63,15 +30,8 @@ package asx
     }
     
     /**
-     * Unfolds a value using the predicate, transformer, and incrementor functions.
+     * Unfolds a value using a predicate, transformer, and incrementor functions.
      *  
-     * <pre>
-     *  state       initial state
-     *  predicate   tests the state to know when to stop
-     *  transformer converts the state to an output value
-     *  incrementor converts the state to the next state
-     * </pre>
-     *
      * @param initial Seed value for the unfold
      * @param predicate Determines whether to continue processing the unfold. Must match: function(state:Object):Boolean;
      * @param transformer Transforms the state to the next result. Must match: function(state:Object):Object;
@@ -139,10 +99,10 @@ package asx
         return [];
       } 
       
-      if (!arrays.every(isArray))
+      /*if (!arrays.every(isArray))
       {
         throw new ArgumentError('ArrayMethods.zip expects all arguments to be Array');
-      }
+      }*/
 
       // find the maximum length of the arrays
       var maxLength:Number = Math.max.apply(null, pluck(arrays, 'length'));
@@ -305,6 +265,10 @@ package asx
      */
     static public function tail(array:Array):Array {
       return array.slice(1);
+    }
+    
+    static public function empty(array:Array):Boolean {
+      return array.length == 0;
     }
   }
 }
