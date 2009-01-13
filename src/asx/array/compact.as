@@ -18,6 +18,6 @@ package asx.array {
    }
 }
 
-internal function itemIsNotNull(item:Object):Boolean {
+internal function itemIsNotNull(item:Object, i:int, a:Array):Boolean {
   return item !== null;
 }

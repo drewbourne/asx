@@ -45,7 +45,13 @@ package asx {
     /**
      * @see asx.array.inject 
      */
-    public static const inject:Function = asx.array.invoke;
+    public static const inject:Function = asx.array.inject;
+
+    /**
+     * @see asx.array.invoke
+     */
+    public static const invoke:Function = asx.array.invoke;
+
     
     /**
      * @see asx.array.partition 
@@ -75,7 +81,7 @@ package asx {
     /**
      * @see asx.array.unique 
      */
-    public static const unqiue:Function = asx.array.unique;
+    public static const unique:Function = asx.array.unique;
     
     /**
      * @see asx.array.zip 

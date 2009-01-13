@@ -12,6 +12,8 @@ package asx.array {
   }
 }
 
+import asx.array.contains;
+
 internal function uniqueIterator(memo:Array, value:Object):Array {
   if (!contains(memo, value)) {
     memo.push(value);

@@ -88,5 +88,12 @@ package asx
     {
       return trim(value.replace(/[\s]+/g, ' '));
     }
+    
+    // table:
+    // || header || header ||
+    // | field | field |
+    // result:
+    // [[ "header", "header" ],
+    //  [ "field",  "field"  ]]
   }
 }

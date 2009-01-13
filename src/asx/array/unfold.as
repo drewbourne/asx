@@ -11,14 +11,14 @@ package asx.array {
    * @return result Array of the unfold transformations
    */
   public function unfold(initial:Object, predicate:Function, transformer:Function, incrementor:Function):Array {
-      
+
     var result:Array = [];
     var state:Object = initial;
       
-    do {
+    while (predicate(state)) {
       result.push(transformer(state));
       state = incrementor(state);
-    } while (predicate(state))
+    } 
       
     return result;
   } 

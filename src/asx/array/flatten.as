@@ -18,6 +18,8 @@ package asx.array {
    }
 }
 
+import asx.array.flatten;
+
 internal function flattenInternal(memo:Array, value:Object):Array {
   return memo.concat(value is Array ? flatten(value as Array) : [value]);
 }

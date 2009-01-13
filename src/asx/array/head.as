@@ -7,7 +7,7 @@ package asx.array {
    * @param array Array
    * @return First item in Array, or null if the array is empty.
    */ 
-  static public function head(array:Array):Object {
+  public function head(array:Array):Object {
     return array[0] || null;
   }
 }
