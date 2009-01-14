@@ -3,6 +3,8 @@ package asx {
   import spectacular.dsl.*;
   import org.hamcrest.*;
 
+  // TODO mean median mode
+  
   public function NumberMethodsSpecs():void {
 
     describe('NumberMethods', function():void {

@@ -5,7 +5,7 @@ package asx.fn {
    * Partial function argument application
    *  
    * @param fn Function to apply arguments to
-   * @param ...rest Values to apply to the fn. Number of arguments to apply
+   * @param ...rest Values to apply to the fn. Number of arguments to apply.
    */
   public function partial(fn:Function, ...rest):Function {
     var args:Array = rest.slice(0);
