@@ -76,6 +76,11 @@ package asx {
       describe("rncurry", function():void {
         
       });
+      
+      // S(f, g)(args...) == f(g(args...), args...)
+      describe("S", function():void {
+        
+      });
     });
   }
 }

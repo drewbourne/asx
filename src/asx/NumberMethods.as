@@ -1,5 +1,7 @@
 package asx {
   
+  import asx.number.*;
+  
   public class NumberMethods {
     
     public static const between:Function = asx.number.between;

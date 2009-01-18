@@ -4,8 +4,10 @@ package asx {
   import org.hamcrest.*;
 
   // TODO mean median mode
+  // TODO add, sub, mul, div, mod, pow
+  // TODO eq, gt, gte, lt, lte
   
-  public function NumberMethodsSpecs():void {
+  public function NumberSpecs():void {
 
     describe('NumberMethods', function():void {
       describe('between', function():void {

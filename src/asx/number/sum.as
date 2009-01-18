@@ -1,5 +1,7 @@
 package asx.number {  
   
+  import asx.array.inject;
+  
   /**
    * Sum an Array of Numbers
    *  

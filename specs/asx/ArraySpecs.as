@@ -174,6 +174,38 @@ package asx {
           assertThat(without(values, 0, 1), equalTo([2, 3]));
         });
       });
+      
+      describe('random', function():void {
+        it('returns a random item from the array', function():void {
+          var values:Array = [];
+          // FIXME port over the hamcrest matcher that checks if the given item is in the an array.
+          assertThat(random(values), null);
+        });
+      });
+      
+      describe('difference', function():void {
+        it('returns the items that were not in both input arrays', function():void {
+          var one:Array = [1, 2, 3, 4, 5];
+          var two:Array = [1, 3, 5, 7, 9];
+          assertThat(difference(one, two), equalTo([2, 4, 7, 9]));
+        });
+      });
+      
+      describe('intersection', function():void {
+        it('returns the items that were in both input arrays', function():void {
+          var one:Array = [1, 2, 3, 4, 5];
+          var two:Array = [1, 3, 5, 7, 9];
+          assertThat(union(one, two), equalTo([1, 3, 5]));
+        });
+      });
+      
+      describe('union', function():void {
+        it('returns the unique items from both arrays', function():void {
+          var one:Array = [1, 2, 3, 4, 5];
+          var two:Array = [1, 3, 5, 7, 9];
+          assertThat(union(one, two), equalTo([1, 2, 3, 4, 5, 7, 9]));
+        });
+      });
     });
   }
 }

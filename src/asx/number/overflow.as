@@ -8,24 +8,28 @@ package asx.number {
    * @param maximum
    */
   public function overflow(value:Number, minimum:Number, maximum:Number):Number {
+
+    var range:Number;
+    var difference:Number;
+    var modulus:Number;
     
     if (between(value, minimum, maximum)) {
       return value;
     }
 
-    var range:Number = maximum - minimum;
-    var difference:Number;
-    var modulus:Number;
+    range = maximum - minimum;
 
     if (value < minimum) {
       difference = minimum - value;
       modulus = difference % range;
-      return maximum - modulus;
-      
-    } else if (value > maximum) {
+      return maximum - modulus;  
+    } 
+    else if (value > maximum) {
       difference = value - maximum;
       modulus = difference % range;
       return minimum + modulus;
     }
-  } 
+    
+    return value;
+  }
 }

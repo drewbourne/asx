@@ -7,14 +7,14 @@ package asx {
       
       it("counts up when start is less than stop", function():void {
         range = new NumberRange(0, 10);
-        for (var i:int = 0, n:int = 10; i < n); i++ {
+        for (var i:int = 0, n:int = 10; i < n; i++) {
           assertThat(range[i], equalTo(i));
         }
       });
 
       it("counts down when start is greater than stop", function():void {
         range = new NumberRange(10, 0);
-        for (var i:int = 0, n:int = 10; i < n); i++ {
+        for (var i:int = 0, n:int = 10; i < n; i++) {
           assertThat(range[i], equalTo(10 - i));
         }
       });
@@ -170,9 +170,9 @@ import flash.utils.flash_proxy;
 
 use namespace flash_proxy;
 
-internal class Range extends Proxy {
+/*internal class Range extends Proxy {
 
-  public static var successors:Object {
+  public static var successors:Object = {
     'String': function(s:String):String { 
       return String.fromCharCode(++(s.charCodeAt(0)));
     },
@@ -190,7 +190,7 @@ internal class Range extends Proxy {
   public function Range(start:Object, end:Object, succ:Function) {
     super();
   }
-}
+}*/
 
 
 // range is an on-request unfold of the next state
@@ -262,7 +262,7 @@ internal class Range {
     var state:Object = _initial;
     while(predicate(state)) {
       
-      result = fn(start));
+      result = fn(start);
       // we'll short-circuit when result fails
       if (!result) {
         break;
@@ -279,7 +279,7 @@ internal class Range {
      var state:Object = _initial;
      while(predicate(state)) {
 
-       result = fn(start));
+       result = fn(start);
        // we'll short-circuit when result fails
        if (result) {
          break;

@@ -1,7 +1,6 @@
-package asx
-{
-  public class ObjectMethods 
-  {
+package asx {
+  
+  public class ObjectMethods {
     
   }
 }
