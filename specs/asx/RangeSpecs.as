@@ -209,7 +209,7 @@ internal class Range {
     _incrementor = incrementor;
   }
   
-  public function toArray():toArray {
+  public function toArray():Array {
     return unfold(_initial, _predicate, _incrementor, _incrementor);
   }
   

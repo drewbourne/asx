@@ -8,8 +8,9 @@ package asx.array {
     
     var result:Array = [];
     
-    result = result.concat(a.filter(aritize(partial(contains, b, _), 1));
-    result = result.concat(b.filter(aritize(partial(contains, a, _), 1));
+    result = result.concat(a.filter(aritize(partial(contains, b, _), 1)));
+    result = result.concat(b.filter(aritize(partial(contains, a, _), 1)));
+    result = unique(result);
     
     return result;
   } 

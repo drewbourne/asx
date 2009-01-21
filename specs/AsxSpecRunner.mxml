@@ -17,15 +17,16 @@
 
       public function go():void {
 
-        RangeSpecs();
-        DateSpecs();
-        NumberSpecs();
-        FunctionSpecs();
         ArraySpecs();
+        FunctionSpecs();
+        ObjectSpecs();
+        NumberSpecs();
 
-        /*FunctionMethodsSpecs();
+        /*RangeSpecs();*/
+        /*DateSpecs();*/
+
+        // yet to be separated to individual files/functions
         StringMethodsSpecs();
-        FunctionalSpecs();*/
         
         run();
       }

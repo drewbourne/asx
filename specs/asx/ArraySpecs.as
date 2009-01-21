@@ -1,6 +1,7 @@
 package asx {
 
   import asx.array.*;  
+  import asx.object.isA;
   import spectacular.dsl.*;
   import org.hamcrest.*;
 
@@ -177,9 +178,17 @@ package asx {
       
       describe('random', function():void {
         it('returns a random item from the array', function():void {
-          var values:Array = [];
-          // FIXME port over the hamcrest matcher that checks if the given item is in the an array.
-          assertThat(random(values), null);
+          var values:Array = [1, 2, 3, 4, 5];
+          // TODO port over the hamcrest matcher that checks if the given item is in the an array.
+          assertThat(values.indexOf(random(values)), not(equalTo(-1)));
+        });
+      });
+      
+      describe('reject', function():void {
+        it('filters an Array for items that dont match the iterator', function():void {
+          var obj:Object = { n: 4 };
+          var others:Array = reject([1, 2, 3, true, obj], asx.object.isA(Number));
+          assertThat(others, equalTo([true, obj]));
         });
       });
       
@@ -195,7 +204,7 @@ package asx {
         it('returns the items that were in both input arrays', function():void {
           var one:Array = [1, 2, 3, 4, 5];
           var two:Array = [1, 3, 5, 7, 9];
-          assertThat(union(one, two), equalTo([1, 3, 5]));
+          assertThat(intersection(one, two), equalTo([1, 3, 5]));
         });
       });
       

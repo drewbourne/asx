@@ -26,6 +26,8 @@ package asx {
       describe('partial', function():void {
         it("should be awesome", function():void {
           
+          // FIXME write better specifications for the behaviour of partial please
+          
           function list(a:int, b:int, c:int, d:int):Array {
             return [a, b, c, d];
           };
@@ -43,10 +45,9 @@ package asx {
             partial(list, _, _, _, _)(1)(3, _, 4)(2), 
             equalTo([1, 3, 2, 4]));
         });
-        it("can mimic aritize by specify _ for the number of arguments to pass on", function():void {
-          // but slower
+        it("can mimic aritize by specifying _ for the number of arguments to pass on", function():void {
+          // but it will definately be slower then aritize
           var acceptAndReturn:Function = function(...rest):Array {
-            trace('acceptAndReturn', rest.join(', '));
             return rest;
           }
           
@@ -59,6 +60,7 @@ package asx {
         });
       });
       
+      /*      
       describe('curry', function():void {
         it("creates a new function that applies the original arguments and then the new arguments", function():void {
           
@@ -80,7 +82,7 @@ package asx {
       // S(f, g)(args...) == f(g(args...), args...)
       describe("S", function():void {
         
-      });
+      });*/
     });
   }
 }

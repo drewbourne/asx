@@ -1,4 +1,4 @@
-mxmlc specs/AsxSpecs2.mxml \
+mxmlc specs/AsxSpecRunner.mxml \
  -output=bin/AsxSpecs.swf \
  -debug=true \
  -sp specs \
