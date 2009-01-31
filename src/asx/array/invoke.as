@@ -1,11 +1,22 @@
 package asx.array { 
   
+  import asx.fn.callProperty;
+  
   /**
    * Invokes a method on each item the array. 
+   * 
+   * @param array Array of items to invoke method on
+   * @param method Name of the method to invoke
+   * @param ...args Additional arguments to pass to the method
+   * @return Array of return values from the method
+   * @example
+   *  <listing version="3.0">
+   *  var strings:Array = ["once", "upon", "a", "time"];
+   *  var uppercased:Array = invoke(strings, 'toUpperCase');
+   *  assertThat(uppercased, equalTo(["ONCE", "UPON", "A", "TIME"]));
+   *  </listing>
    */
   public function invoke(array:Array, method:String, ...args):Array {  
-    return array.map(function(item:Object, i:int, a:Array):Object {
-      return item[method].apply(item, args);
-    });
+    return array.map(callProperty.apply(null, [method].concat(args));
   } 
 }

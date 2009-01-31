@@ -7,6 +7,19 @@ package asx.array {
    *
    * @param ...arrays
    * @return zipped Array of Arrays
+   * @example
+   *  <listing version="3.0">
+   *  var first:Array = [1, 1, 1];
+   *  var second:Array = [2, null, null, 2];
+   *  var third:Array = [3, 3, 3, 3];
+   *  var zipped:Array = zip(first, second, third);
+   *  assertThat(zipped, equalTo([
+   *    [1,    2,    3],
+   *    [1,    null, 3],
+   *    [1,    null, 3],
+   *    [null, 2,    3]
+   *  ]));
+   *  </listing>
    */
   public function zip(...arrays):Array {
     

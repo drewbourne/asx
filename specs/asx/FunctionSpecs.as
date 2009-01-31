@@ -60,29 +60,23 @@ package asx {
         });
       });
       
-      /*      
-      describe('curry', function():void {
-        it("creates a new function that applies the original arguments and then the new arguments", function():void {
-          
+      describe('callProperty', function():void {
+        it('fails', function():void {
+          assertThat(null, notNullValue());
         });
       });
       
-      describe("rcurry", function():void {
-        
+      describe('getProperty', function():void {
+        it('fails', function():void {
+          assertThat(null, notNullValue());
+        });
       });
       
-      describe("ncurry", function():void {
-        
+      describe('setProperty', function():void {
+        it('fails', function():void {
+          assertThat(null, notNullValue());
+        });
       });
-      
-      describe("rncurry", function():void {
-        
-      });
-      
-      // S(f, g)(args...) == f(g(args...), args...)
-      describe("S", function():void {
-        
-      });*/
     });
   }
 }

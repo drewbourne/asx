@@ -1,6 +1,5 @@
 package asx.array { 
 
-  // TODO include an example showing the usage of head() and tail() for recursive functions.
   /**
    * Returns all the items in an Array except for the first.
    *

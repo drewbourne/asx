@@ -19,20 +19,12 @@ package asx.array {
   } 
 }
 
+import asx.fn.callProperty;
+import asx.fn.getProperty;
+
 internal function pluckIt(array:Array, field:String):Array {
   var isMethod:Boolean = !!field.match(/^.+\(\)$/);
   field = isMethod ? field.slice(0, -2) : field;
-  return array.map( isMethod ? pluckMethod(field) : pluckProperty(field) );
+  return array.map( isMethod ? callProperty(field) : getProperty(field) );
 }
 
-internal function pluckMethod(field:String):Function {
-  return function(value:Object, i:int, a:Array):Object { 
-    return value[field](); 
-  };
-}
-
-internal function pluckProperty(field:String):Function {
-  return function(value:Object, i:int, a:Array):Object { 
-    return value[field]; 
-  };
-}

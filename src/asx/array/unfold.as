@@ -1,6 +1,5 @@
 package asx.array { 
 
-  // TODO add example for unfold()
   /**
    * Unfolds a value using a predicate, transformer, and incrementor functions.
    *   

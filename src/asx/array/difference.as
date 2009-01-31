@@ -5,6 +5,22 @@ package asx.array {
   import asx.fn.not;
   import asx.fn.partial;
   
+  /**
+   * Find the items that are not in both arrays.
+   *  
+   * @param a Array
+   * @param b Array
+   * @return Array of items that were not in both Arrays
+   * @see asx.array.union
+   * @see asx.array.intersection
+   * @example 
+   *  <listing version="3.0">
+   *  var a:Array = [1, 2, 3, 4];
+   *  var b:Array = [3, 4, 5, 6];
+   *  var diff:Array = difference(a, b);
+   *  assertThat(diff, equalTo([1, 2, 5, 6]));
+   *  </listing>
+   */
   public function difference(a:Array, b:Array):Array {
     
     var result:Array = [];
