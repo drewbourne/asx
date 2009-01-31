@@ -11,6 +11,75 @@ package asx {
   public function NumberSpecs():void {
 
     describe('NumberMethods', function():void {
+      describe('operations', function():void {
+        describe('add', function():void {
+          it('adds two numbers together', function():void {
+            assertThat(add(3, 4), equalTo( 3 + 4 ));
+          });
+        });
+        describe('div', function():void {
+          it('divides a number by another', function():void {
+            assertThat(div(14, 2), equalTo( 14 / 2 ));
+          });
+        });
+        describe('mul', function():void {
+          it('multiples a number by another', function():void {
+            assertThat(mul(2, 7), equalTo( 2 * 7 ));
+          });
+        });
+        describe('mod', function():void {
+          it('gets the remainder of dividing a number by another', function():void {
+            assertThat(mod(3, 4), equalTo( 3 % 4 ));
+          });
+        });
+        describe('pow', function():void {
+          it('raises a number to a power', function():void {
+            assertThat(pow(3, 4), equalTo( 3 ^ 4 ));
+          });
+        });
+        describe('sub', function():void {
+          it('subtracts a number from another', function():void {
+            assertThat(sub(3, 4), equalTo( 3 - 4 ));
+          });
+        });
+      });
+      describe('comparisons', function():void {
+        describe('eq', function():void {
+          it('compares two numbers for equality', function():void {
+            assertThat(eq(1, 2), equalTo(false));
+            assertThat(eq(2, 2), equalTo(true));
+          });
+        });
+        describe('gt', function():void {
+          it('compares two numbers using the > greater than operator', function():void {
+            assertThat(gt(1, 2), equalTo(false));
+            assertThat(gt(2, 2), equalTo(false));
+            assertThat(gt(3, 2), equalTo(true));
+          });
+        });
+        describe('gte', function():void {
+          it('compares two numbers using the >= greater than or equal operator', function():void {
+            assertThat(gte(1, 2), equalTo(false));
+            assertThat(gte(2, 2), equalTo(true));
+            assertThat(gte(3, 2), equalTo(true));
+          });
+        });
+        describe('lt', function():void {
+          it('compares two numbers using the < less than operator', function():void {
+            assertThat(lt(1, 2), equalTo(true));
+            assertThat(lt(2, 2), equalTo(false));
+            assertThat(lt(3, 2), equalTo(false));
+          });
+        });
+        describe('lte', function():void {
+          it('compares two numbers using the <= less than or equal operator', function():void {
+            assertThat(lte(1, 2), equalTo(true));
+            assertThat(lte(2, 2), equalTo(true));
+            assertThat(lte(3, 2), equalTo(false));
+          });
+        });
+      });
+      
       describe('between', function():void {
         it('indicates if the value is between the minimum and maximum values', function():void {
           assertThat(between(0, 0, 1), equalTo(true));

@@ -1,12 +1,13 @@
 package asx.number {  
-  
-  // TODO gt examples
+
   /**
-   * Greater than iterator
+   * Compares two numbers using the > greater than operator
+   *  
+   * @param n Number 
+   * @param nn Number
+   * @return n > nn
    */
-  public function gt(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Boolean {
-      return value < n;
-    };
-  } 
+  public function gt(n:Number, nn:Number):Boolean {
+    return n > nn;
+  }
 }

@@ -1,8 +1,13 @@
 package asx.number {  
   
-  public function add(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Boolean {
-      return value + n;
-    }
+  /**
+   * Adds two numbers together
+   *  
+   * @param n Number
+   * @param nn Number
+   * @result n + nn
+   */
+  public function add(n:Number, nn:Number):Number {
+    return n + nn;
   }
 }

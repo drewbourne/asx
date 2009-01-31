@@ -1,12 +1,13 @@
 package asx.number {  
-  
-  // TODO lte examples
+
   /**
-   * Less than or equal to iterator 
+   * Compares two numbers using the &lt;= less than or equal operator
+   *  
+   * @param n Number 
+   * @param nn Number
+   * @return n &lt;= nn
    */
-  public function lte(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Boolean {
-      return value <= n;
-    };
-  } 
+  public function lte(n:Number, nn:Number):Boolean {
+    return n <= nn;
+  }
 }

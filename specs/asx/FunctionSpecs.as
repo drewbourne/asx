@@ -61,20 +61,48 @@ package asx {
       });
       
       describe('callProperty', function():void {
-        it('fails', function():void {
-          assertThat(null, notNullValue());
+        it('calls the method on the item', function():void {
+          var called:Boolean = false;
+          var item:Object = { doIt: function():void { called = true; } };
+          callProperty('doIt')(item);
+          assertThat(called, equalTo(true));
+        });
+        it('passes initial arguments to method', function():void {
+          var received:Array;
+          var item:Object = { doIt: function(...args):void { received = args; } };
+          callProperty('doIt', 1, "b", true)(item);
+          assertThat(received, equalTo([1, "b", true]));
+        });
+        it('ignores arguments given with item', function():void {
+          var received:Array;
+          var item:Object = { doIt: function(...args):void { received = args; } };
+          callProperty('doIt')(item, 1, "b", true);
+          assertThat(received, equalTo([]));
+        })
+        it('returns the result of the method', function():void {
+          var item:Object = { doIt: function(...args):Array { return [1, "b", true]; } };
+          var result:Array = callProperty('doIt')(item);
+          assertThat(result, equalTo([1, "b", true]));
         });
       });
       
       describe('getProperty', function():void {
-        it('fails', function():void {
-          assertThat(null, notNullValue());
+        it('returns the value of the property on the item', function():void {
+          var item:Array = [1, 2, 3];
+          assertThat(getProperty('length')(item), equalTo(3));
         });
       });
       
       describe('setProperty', function():void {
-        it('fails', function():void {
-          assertThat(null, notNullValue());
+        it('sets the value of the property on the item', function():void {
+          var item:Object = { width: 0 };
+          setProperty('width', 50)(item);
+          assertThat(item.width, equalTo(50));
+        });
+        it('returns the item', function():void {
+          var item:Object = { width: 0 };
+          var result:Object = setProperty('width', 50)(item);
+          assertThat(result, equalTo(item));
         });
       });
     });

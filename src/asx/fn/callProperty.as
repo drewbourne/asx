@@ -11,7 +11,7 @@ package asx.fn {
    *  </listing>
    */
   public function callProperty(method:String, ...args):Function {
-    return function(item:Object, i:int, a:Array):Object {
+    return function(item:Object, ...rest):Object {
       return item[method].apply(item, args);
     };
   } 

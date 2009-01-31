@@ -1,8 +1,13 @@
 package asx.number {  
   
-  public function sub(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Number {
-      return value - n;
-    }
+  /**
+   * Subtracts a number from another
+   *  
+   * @param n Number
+   * @param nn Number
+   * @result n - nn
+   */
+  public function sub(n:Number, nn:Number):Number {
+    return n - nn;
   }
 }

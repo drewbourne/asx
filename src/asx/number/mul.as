@@ -1,12 +1,13 @@
 package asx.number {  
-  
-  // TODO mul() examples
+
   /**
-   * Multiplication iterator
+   * Multiples a number by another
+   *  
+   * @param n Number
+   * @param multiplier Number
+   * @return n * multiplier
    */
-  public function mul(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Number {
-      return value * n;
-    }
-  }
+  public function mul(n:Number, multiplier:Number):Number {
+    return n * multiplier;
+  } 
 }

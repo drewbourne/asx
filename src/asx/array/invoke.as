@@ -17,6 +17,6 @@ package asx.array {
    *  </listing>
    */
   public function invoke(array:Array, method:String, ...args):Array {  
-    return array.map(callProperty.apply(null, [method].concat(args));
+    return array.map(callProperty.apply(null, [method].concat(args)));
   } 
 }

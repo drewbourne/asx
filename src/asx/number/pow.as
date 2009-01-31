@@ -1,12 +1,13 @@
 package asx.number {  
-  
-  // TODO pow() examples
+
   /**
-   * Power iterator
+   * Raises a number to a power
+   *  
+   * @param n Number
+   * @param power Number
+   * @return n * power
    */
-  public function pow(n:Number):Function {
-    return function(value:Number, i:int, a:Array):Number {
-      return value ^ n;
-    }
-  }
+  public function pow(n:Number, power:Number):Number {
+    return n ^ power;
+  } 
 }

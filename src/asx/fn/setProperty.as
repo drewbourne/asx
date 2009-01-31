@@ -11,7 +11,7 @@ package asx.fn {
    *  </listing>
    */
   public function setProperty(property:String, value:Object):Function {
-    return function(item:Object, i:int, a:Array):Object {
+    return function(item:Object, ...rest):Object {
       item[property] = value;
       return item;
     };
