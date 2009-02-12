@@ -21,12 +21,10 @@
         FunctionSpecs();
         ObjectSpecs();
         NumberSpecs();
+        StringSpecs();
 
         /*RangeSpecs();*/
         /*DateSpecs();*/
-
-        // yet to be separated to individual files/functions
-        StringMethodsSpecs();
         
         run();
       }

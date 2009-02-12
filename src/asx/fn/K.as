@@ -2,7 +2,7 @@ package asx.fn {
   
   // TODO K() examples
   /**
-   * K
+   * Returns a function that when called always returns the initial value given.
    */
   public function K(value:Object):Function {
     return function(...rest):Object {

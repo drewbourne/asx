@@ -1,7 +1,7 @@
 package asx.fn {  
   
   /**
-   * Returns an iterator function that when called will set the property on the item to the value
+   * Returns function that when called will set the property on the item to the value
    *  
    * @example 
    *  <listing version="3.0">

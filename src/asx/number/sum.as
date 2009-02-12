@@ -9,9 +9,6 @@ package asx.number {
    * @return total of the numbers in the source Array
    */
   public function sum(numbers:Array):Number {
-    
-    return inject(0, numbers, function(memo:Number, n:Number):Number {
-      return memo + n;
-    }) as Number;
+    return inject(0, numbers, add) as Number;
   } 
 }

@@ -1,7 +1,7 @@
 package asx.fn {  
   
   /**
-   * Returns an iterator function that when called will call the method on the item with the given args. 
+   * Returns an function that when called will call the method on the item with the given args. 
    *  
    * @example 
    *  <listing version="3.0">

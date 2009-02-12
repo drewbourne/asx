@@ -105,6 +105,32 @@ package asx {
           assertThat(result, equalTo(item));
         });
       });
+      
+      describe('callFunction', function():void {
+        it('calls the given function', function():void {
+          var called:Boolean = false;
+          var fn:Function = function():void {
+            called = true;
+            return;
+          };
+          callFunction()(fn);
+          assertThat(called, equalTo(true));
+        });
+        it('passes args to inner fn', function():void {
+          var received:Array = null;
+          var fn:Function = function(...rest):void {
+            received = rest;
+          };
+          callFunction(1, 2, 3)(fn);
+          assertThat(received, equalTo([1, 2, 3]));
+        });
+        it('returns the result of the function', function():void {
+          var fn:Function = function():Boolean {
+            return true;
+          };
+          assertThat(callFunction()(fn), equalTo(true));
+        });
+      });
     });
   }
 }

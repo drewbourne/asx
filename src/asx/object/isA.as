@@ -1,7 +1,7 @@
 package asx.object {  
   
   /**
-   * Returns an iterator function that returns true if the item is the given type.
+   * Returns a function that returns true if the item is the given type.
    *  
    * @example
    *  <listing version="3.0">
@@ -10,8 +10,9 @@ package asx.object {
    *  </listing>
    */
   public function isA(type:Class):Function {
-    return function(object:Object, i:int=0, a:Array=null):Boolean {
+    return function(object:Object, ...rest):Boolean {
       return object is type;
     }
   } 
 }
+
