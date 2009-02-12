@@ -1,6 +1,7 @@
 package asx {
 
   import asx.array.*;  
+  import asx.fn.I;
   import asx.object.isA;
   import spectacular.dsl.*;
   import org.hamcrest.*;
@@ -213,6 +214,14 @@ package asx {
           var one:Array = [1, 2, 3, 4, 5];
           var two:Array = [1, 3, 5, 7, 9];
           assertThat(union(one, two), equalTo([1, 2, 3, 4, 5, 7, 9]));
+        });
+      });
+      
+      describe('eachSlice', function():void {
+        it('groups items into slices of a given size', function():void {
+          var array:Array = [1, 2, 3, 4, 5, 6, 7];
+          var slices:Array = [];
+          assertThat(eachSlice(array, 3, I), equalTo([[1, 2, 3], [4, 5, 6], [7]]));
         });
       });
     });

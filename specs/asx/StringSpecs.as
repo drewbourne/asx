@@ -1,5 +1,6 @@
 package asx {
 
+  import asx.array.eachSlice;
   import asx.string.*;
   import spectacular.dsl.*;
   import org.hamcrest.*;
@@ -66,7 +67,101 @@ package asx {
           assertThat(normalize('k\tthx\nbye'), equalTo('k thx bye'));
           assertThat(normalize('k \t thx\n\n\tbye'), equalTo('k thx bye'));
         });
-      })
+      });
+      
+      describe('capitalize', function():void {
+        it('is naïve, use titleCase instead');
+        it('Uppercases the first character of a string and leaves the rest unaltered', function():void {
+          assertThat(capitalize('waffles'), equalTo('Waffles'));
+          assertThat(capitalize('iPhone'), equalTo('IPhone'));
+          assertThat(capitalize('multiple words'), equalTo('Multiple words'));
+        });
+      });
+      
+      describe('titleCase', function():void {
+        it("matches Gruber's ideal titles", function():void {
+          var titles:Array = [
+            "For step-by-step directions email someone@gmail.com",
+            "For Step-by-Step Directions Email someone@gmail.com",
+
+            "2lmc Spool: 'Gruber on OmniFocus and Vapo(u)rware'",
+            "2lmc Spool: 'Gruber on OmniFocus and Vapo(u)rware'",
+
+            'Have you read “The Lottery”?',
+            'Have You Read “The Lottery”?',
+
+            'your hair[cut] looks (nice)',
+            'Your Hair[cut] Looks (Nice)',
+
+            "People probably won't put http://foo.com/bar/ in titles",
+            "People Probably Won't Put http://foo.com/bar/ in Titles",
+
+            "Scott Moritz and TheStreet.com’s million iPhone la‑la land",
+            "Scott Moritz and TheStreet.com’s Million iPhone La‑La Land",
+
+            "BlackBerry vs. iPhone",
+            "BlackBerry vs. iPhone",
+
+            "Notes and observations regarding Apple’s announcements from ‘The Beat Goes On’ special event",
+            "Notes and Observations Regarding Apple’s Announcements From ‘The Beat Goes On’ Special Event",
+
+            "Read markdown_rules.txt to find out how _underscores around words_ will be interpretted",
+            "Read markdown_rules.txt to Find Out How _Underscores Around Words_ Will Be Interpretted",
+
+            "Q&A with Steve Jobs: 'That's what happens in technology'",
+            "Q&A With Steve Jobs: 'That's What Happens in Technology'",
+
+            "What is AT&T's problem?",
+            "What Is AT&T's Problem?",
+
+            "Apple deal with AT&T falls through",
+            "Apple Deal With AT&T Falls Through",
+
+            "this v that",
+            "This v That",
+
+            "this vs that",
+            "This vs That",
+
+            "this v. that",
+            "This v. That",
+
+            "this vs. that",
+            "This vs. That",
+
+            "The SEC's Apple probe: what you need to know",
+            "The SEC's Apple Probe: What You Need to Know",
+
+            "'by the way, small word at the start but within quotes.'",
+            "'By the Way, Small Word at the Start but Within Quotes.'",
+
+            "Small word at end is nothing to be afraid of",
+            "Small Word at End Is Nothing to Be Afraid Of",
+
+            "Starting sub-phrase with a small word: a trick, perhaps?",
+            "Starting Sub-Phrase With a Small Word: A Trick, Perhaps?",
+
+            "Sub-phrase with a small word in quotes: 'a trick, perhaps?'",
+            "Sub-Phrase With a Small Word in Quotes: 'A Trick, Perhaps?'",
+
+            'Sub-phrase with a small word in quotes: "a trick, perhaps?"',
+            'Sub-Phrase With a Small Word in Quotes: "A Trick, Perhaps?"',
+
+            '"Nothing to Be Afraid of?"',
+            '"Nothing to Be Afraid Of?"',
+
+            'a thing',
+            'A Thing',
+
+            "Dr. Strangelove (or: how I Learned to Stop Worrying and Love the Bomb)",
+            "Dr. Strangelove (Or: How I Learned to Stop Worrying and Love the Bomb)"
+          ];
+          
+          eachSlice(titles, 2, function(slice:Array, i:int, a:Array):void {
+            assertThat(titleCase(slice[0]), equalTo(slice[1]))
+          });
+        });
+      });
     });
     
   }

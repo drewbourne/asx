@@ -131,6 +131,22 @@ package asx {
           assertThat(callFunction()(fn), equalTo(true));
         });
       });
+      
+      describe('I', function():void {
+        it('returns the item given as the first parameter', function():void {
+          assertThat(I(1), equalTo(1));
+          assertThat(I(true), equalTo(true));
+          assertThat(I("string"), equalTo("string"));
+        });
+      });
+      
+      describe('K', function():void {
+        it('returns a function that when invoked returns the item given as the initial parameter', function():void {
+          assertThat(K(1)(3, 4), equalTo(1));
+          assertThat(K(true)(false, 5, 6, 7), equalTo(true));
+          assertThat(K("string")(), equalTo("string"));
+        });
+      });
     });
   }
 }
