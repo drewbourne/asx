@@ -5,6 +5,7 @@ package asx {
   import asx.object.isA;
   import spectacular.dsl.*;
   import org.hamcrest.*;
+  import org.hamcrest.collection.*;
 
   public function ArraySpecs():void {
     
@@ -222,6 +223,15 @@ package asx {
           var array:Array = [1, 2, 3, 4, 5, 6, 7];
           var slices:Array = [];
           assertThat(eachSlice(array, 3, I), equalTo([[1, 2, 3], [4, 5, 6], [7]]));
+        });
+      });
+      
+      describe('shuffle', function():void {
+        it('randomises the order of items in the array', function():void {
+          var array:Array = [1, 2, 3, 4, 5];
+          var shuffled:Array = shuffle(array);
+          assertThat(shuffled, arrayWithSize(5));
+          assertThat(shuffled, hasItems(1, 2, 3, 4, 5));
         });
       });
     });
