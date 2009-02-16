@@ -15,7 +15,7 @@ package asx.array {
    * @example Summing an array of numbers can be implemented with inject.
    *  <listing version="3.0">
    *  var numbers:Array = [1, 2, 3, 4, 5];
-   *  var sum:Number = inject(0, function(total:Number, n:Number):Number {
+   *  var sum:Number = inject(0, numbers, function(total:Number, n:Number):Number {
    *    return total + n;
    *  });
    *  </listing>
