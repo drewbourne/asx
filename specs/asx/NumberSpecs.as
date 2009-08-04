@@ -3,6 +3,8 @@ package asx {
   import asx.number.*;
   import spectacular.dsl.*;
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
+  import org.hamcrest.object.*;
 
   // TODO mean median mode
   // TODO add, sub, mul, div, mod, pow

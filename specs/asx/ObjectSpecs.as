@@ -6,6 +6,8 @@ package asx {
   import flash.events.Event;
   import flash.errors.IllegalOperationError;
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
+  import org.hamcrest.object.*;
   import spectacular.dsl.*;
   
   public function ObjectSpecs():void {

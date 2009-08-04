@@ -16,6 +16,6 @@ package asx.array {
    * </listing>
    */
   public function empty(array:Array):Boolean {
-    return array.length == 0;
+    return !array || array.length == 0;
   } 
 }

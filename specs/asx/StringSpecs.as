@@ -4,10 +4,75 @@ package asx {
   import asx.string.*;
   import spectacular.dsl.*;
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
+  import org.hamcrest.object.*;
 
   public function StringSpecs():void {
 
     describe('asx.string', function():void {
+      describe('empty', function():void {
+        it('returns true for null', function():void {
+          assertThat(empty(null), equalTo(true));
+        });
+        it('returns true for zero length string ""', function():void {
+          assertThat(empty(""), equalTo(true));
+        });
+        it('returns true for whitespace only string "\\t\\n\\r "', function():void {
+          assertThat(empty(" "), equalTo(true));
+          assertThat(empty("\t"), equalTo(true));
+          assertThat(empty("\r"), equalTo(true));
+          assertThat(empty("\n"), equalTo(true));
+          assertThat(empty("\t\n\r "), equalTo(true));
+        });
+        it('returns false for "stringwithoutwhitespace"', function():void {
+          assertThat(empty("stringwithoutwhitespace"), equalTo(false));
+        });
+        it('returns false for "string\t with\r\n whitespace"', function():void {
+          assertThat(empty("string\t with\r\n whitespace"), equalTo(false));
+        });
+      });
+      
+      describe('substitute', function():void {
+        it('replaces indexed markers {0} {1} in-order', function():void {
+          assertThat(substitute("in-order {0} {1}", 1, 2), equalTo('in-order 1 2'));
+        });
+        it('replaces indexed markers {0} {1} out-of-order', function():void {
+          assertThat(substitute("out-of-order {1} {0}", 1, 2), equalTo('out-of-order 2 1'));
+        });
+        it('discards unused parameters', function():void {
+          assertThat(substitute("used {2} and {3}", 1, 2, 3, 4), equalTo('used 3 and 4'));
+          assertThat(substitute("didnt discard {0} or {1}", 1, 2, 3, 4), equalTo('didnt discard 1 or 2'));
+        });
+        it('replaces autofill markers {} {}', function():void {
+          assertThat(substitute("autofills {} markers {}", 1, 2, 3, 4), equalTo('autofills 1 markers 2'));
+        });
+        it('mixed autofill and indexed markers', function():void {
+          assertThat(substitute("mixed {} {} {0} {}", 1, 2, 3, 4), equalTo("mixed 1 2 1 3"));
+          assertThat(substitute("mixed autofill {} and index {3} markers", 1, 2, 3, 4), equalTo('mixed autofill 1 and index 4 markers'));
+        });
+        it('skips unmatched braces', function():void {
+          assertThat(substitute("left { only", 1), equalTo("left { only"));
+          assertThat(substitute("right } only", 1), equalTo("right } only"));
+          assertThat(substitute("left { only", 1), equalTo("left { only"));
+          assertThat(substitute("with {words}", 1), equalTo("with {words}"));
+        });
+        it('ignores escaped markers', function():void {
+          // escape the slash so it stays in the string
+          // if you want the slash then i think you are probably out of luck
+          // with the current implementation.
+          // ask nicely for a fix, or provide a patch. please. 
+          // kthx.
+          assertThat(substitute("with \\{1} escape", 1, 2), equalTo("with {1} escape"));
+          
+        });
+      });
+      
+      describe('reverse', function():void {
+        it('reverses the string', function():void {
+          assertThat(reverse("string"), equalTo("gnirts"));
+        });
+      });
+      
       describe('repeat', function():void {
         it('repeats the given string the given number of times', function():void {
           assertThat(repeat('', 0), equalTo(''));

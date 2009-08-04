@@ -3,6 +3,8 @@ package asx {
   import asx.fn.*;
   import spectacular.dsl.*;
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
+  import org.hamcrest.object.*;
 
   public function FunctionSpecs():void {
   

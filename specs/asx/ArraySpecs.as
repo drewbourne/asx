@@ -5,7 +5,9 @@ package asx {
   import asx.object.isA;
   import spectacular.dsl.*;
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
   import org.hamcrest.collection.*;
+  import org.hamcrest.object.*;
 
   public function ArraySpecs():void {
     
@@ -232,6 +234,23 @@ package asx {
           var shuffled:Array = shuffle(array);
           assertThat(shuffled, arrayWithSize(5));
           assertThat(shuffled, hasItems(1, 2, 3, 4, 5));
+        });
+      });
+      
+      describe('empty', function():void {
+        it('returns true for null', function():void {
+          assertThat(empty(null), equalTo(true));
+        });
+        it('returns true for array with no items', function():void {
+          assertThat(empty([]), equalTo(true));
+        });
+        it('returns false for array with null items', function():void {
+          assertThat(empty([null]), equalTo(false));
+          assertThat(empty([null, null]), equalTo(false));
+        });
+        it('returns false for array with items', function():void {
+          assertThat(empty([0]), equalTo(false));
+          assertThat(empty([0, 1, 2]), equalTo(false));
         });
       });
     });
