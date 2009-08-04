@@ -5,8 +5,7 @@ mxmlc specs/AsxSpecRunner.mxml \
  -sp specs \
  -sp src \
  -sp ../spectacular-as3/src/ \
- -sp ../hamcrest-as3/core/src \
- -sp ../hamcrest-as3/factories/src
+ -sp ../hamcrest-as3/hamcrest/src \
 
 # swc
 compc \
