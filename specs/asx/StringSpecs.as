@@ -33,37 +33,71 @@ package asx {
       });
       
       describe('substitute', function():void {
-        it('replaces indexed markers {0} {1} in-order', function():void {
-          assertThat(substitute("in-order {0} {1}", 1, 2), equalTo('in-order 1 2'));
+        describe('when called with ...replacements, substitute(String, Object, ...Object)', function():void {
+          it('replaces indexed markers {0} {1} in-order', function():void {
+            assertThat(substitute("in-order {0} {1}", 1, 2), equalTo('in-order 1 2'));
+          });
+          it('replaces indexed markers {0} {1} out-of-order', function():void {
+            assertThat(substitute("out-of-order {1} {0}", 1, 2), equalTo('out-of-order 2 1'));
+          });
+          it('discards unused parameters', function():void {
+            assertThat(substitute("used {2} and {3}", 1, 2, 3, 4), equalTo('used 3 and 4'));
+            assertThat(substitute("didnt discard {0} or {1}", 1, 2, 3, 4), equalTo('didnt discard 1 or 2'));
+          });
+          it('replaces autofill markers {} {}', function():void {
+            assertThat(substitute("autofills {} markers {}", 1, 2, 3, 4), equalTo('autofills 1 markers 2'));
+          });
+          it('mixed autofill and indexed markers', function():void {
+            assertThat(substitute("mixed {} {} {0} {}", 1, 2, 3, 4), equalTo("mixed 1 2 1 3"));
+            assertThat(substitute("mixed autofill {} and index {3} markers", 1, 2, 3, 4), equalTo('mixed autofill 1 and index 4 markers'));
+          });
+          it('skips unmatched braces', function():void {
+            assertThat(substitute("left { only", 1), equalTo("left { only"));
+            assertThat(substitute("right } only", 1), equalTo("right } only"));
+            assertThat(substitute("left { only", 1), equalTo("left { only"));
+            assertThat(substitute("with {words}", 1), equalTo("with {words}"));
+          });
+          it('ignores escaped markers', function():void {
+            // escape the slash so it stays in the string
+            // if you want the slash then i think you are probably out of luck
+            // with the current implementation.
+            // ask nicely for a fix, or provide a patch. please. 
+            // kthx.
+            assertThat(substitute("with \\{1} escape", 1, 2), equalTo("with {1} escape"));
+          });
         });
-        it('replaces indexed markers {0} {1} out-of-order', function():void {
-          assertThat(substitute("out-of-order {1} {0}", 1, 2), equalTo('out-of-order 2 1'));
-        });
-        it('discards unused parameters', function():void {
-          assertThat(substitute("used {2} and {3}", 1, 2, 3, 4), equalTo('used 3 and 4'));
-          assertThat(substitute("didnt discard {0} or {1}", 1, 2, 3, 4), equalTo('didnt discard 1 or 2'));
-        });
-        it('replaces autofill markers {} {}', function():void {
-          assertThat(substitute("autofills {} markers {}", 1, 2, 3, 4), equalTo('autofills 1 markers 2'));
-        });
-        it('mixed autofill and indexed markers', function():void {
-          assertThat(substitute("mixed {} {} {0} {}", 1, 2, 3, 4), equalTo("mixed 1 2 1 3"));
-          assertThat(substitute("mixed autofill {} and index {3} markers", 1, 2, 3, 4), equalTo('mixed autofill 1 and index 4 markers'));
-        });
-        it('skips unmatched braces', function():void {
-          assertThat(substitute("left { only", 1), equalTo("left { only"));
-          assertThat(substitute("right } only", 1), equalTo("right } only"));
-          assertThat(substitute("left { only", 1), equalTo("left { only"));
-          assertThat(substitute("with {words}", 1), equalTo("with {words}"));
-        });
-        it('ignores escaped markers', function():void {
-          // escape the slash so it stays in the string
-          // if you want the slash then i think you are probably out of luck
-          // with the current implementation.
-          // ask nicely for a fix, or provide a patch. please. 
-          // kthx.
-          assertThat(substitute("with \\{1} escape", 1, 2), equalTo("with {1} escape"));
-          
+        describe('when called with an Array of replacements, substitute(String, Array)', function():void {
+          it('replaces indexed markers {0} {1} in-order', function():void {
+            assertThat(substitute("in-order {0} {1}", [1, 2]), equalTo('in-order 1 2'));
+          });
+          it('replaces indexed markers {0} {1} out-of-order', function():void {
+            assertThat(substitute("out-of-order {1} {0}", [1, 2]), equalTo('out-of-order 2 1'));
+          });
+          it('discards unused parameters', function():void {
+            assertThat(substitute("used {2} and {3}", [1, 2, 3, 4]), equalTo('used 3 and 4'));
+            assertThat(substitute("didnt discard {0} or {1}", [1, 2, 3, 4]), equalTo('didnt discard 1 or 2'));
+          });
+          it('replaces autofill markers {} {}', function():void {
+            assertThat(substitute("autofills {} markers {}", [1, 2, 3, 4]), equalTo('autofills 1 markers 2'));
+          });
+          it('mixed autofill and indexed markers', function():void {
+            assertThat(substitute("mixed {} {} {0} {}", [1, 2, 3, 4]), equalTo("mixed 1 2 1 3"));
+            assertThat(substitute("mixed autofill {} and index {3} markers", [1, 2, 3, 4]), equalTo('mixed autofill 1 and index 4 markers'));
+          });
+          it('skips unmatched braces', function():void {
+            assertThat(substitute("left { only", [1]), equalTo("left { only"));
+            assertThat(substitute("right } only", [1]), equalTo("right } only"));
+            assertThat(substitute("left { only", [1]), equalTo("left { only"));
+            assertThat(substitute("with {words}", [1]), equalTo("with {words}"));
+          });
+          it('ignores escaped markers', function():void {
+            // escape the slash so it stays in the string
+            // if you want the slash then i think you are probably out of luck
+            // with the current implementation.
+            // ask nicely for a fix, or provide a patch. please. 
+            // kthx.
+            assertThat(substitute("with \\{1} escape", [1, 2]), equalTo("with {1} escape"));
+          });
         });
       });
       
@@ -140,6 +174,17 @@ package asx {
           assertThat(capitalize('waffles'), equalTo('Waffles'));
           assertThat(capitalize('iPhone'), equalTo('IPhone'));
           assertThat(capitalize('multiple words'), equalTo('Multiple words'));
+        });
+      });
+
+      describe('camelize', function():void {
+        it('convert remove whitespace, hyphens and underscores, and capitalize each successive word', function():void {
+          assertThat(camelize('camelize'), equalTo('camelize'));
+          assertThat(camelize('camelize this'), equalTo('camelizeThis'));
+          assertThat(camelize('Camelize This'), equalTo('camelizeThis'));
+          assertThat(camelize('camelize this and that'), equalTo('camelizeThisAndThat'));
+          assertThat(camelize('camelize-this-and-that'), equalTo('camelizeThisAndThat'));
+          assertThat(camelize('camelize_this_and_that'), equalTo('camelizeThisAndThat'));
         });
       });
       
