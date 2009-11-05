@@ -21,5 +21,5 @@ import asx.fn._;
 import asx.fn.partial;
 import asx.string.capitalize;
 
-internal const underscoresHyphensAndWhitespace:RegExp = /[_-\s]+(.)/g;
+internal const underscoresHyphensAndWhitespace:RegExp = /[_-\s]+/g;
 internal const capitalizeWord:Function = partial(capitalize, _);
