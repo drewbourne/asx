@@ -12,8 +12,10 @@ package asx.array {
    *  assertThat(uniq, equalTo([1, 2, 3, 5, 8]));
    *  </listing>
    */
-  public function unique(array:Array):Array {
-    return inject([], array, uniqueIterator) as Array;
+  public function unique(array:Array, field:String=null):Array {
+    return field 
+      ? inject([], array, uniqueFieldIterator(field)) as Array
+      : inject([], array, uniqueIterator) as Array;
   }
 }
 
@@ -24,4 +26,19 @@ internal function uniqueIterator(memo:Array, value:Object):Array {
     memo.push(value);
   }
   return memo;
+}
+
+internal function uniqueFieldIterator(field:String):Function
+{
+  var fieldValues:Array = [];
+  return function(memo:Array, value:Object):Array 
+  {
+    var fieldValue:* = value[field];
+    if (!contains(fieldValues, fieldValue))
+    {
+      fieldValues.push(fieldValue);
+      memo.push(value);
+    }
+    return memo;
+  };
 }
