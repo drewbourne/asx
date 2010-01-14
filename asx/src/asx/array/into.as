@@ -3,7 +3,7 @@ package asx.array
 	import asx.fn._;
 	import asx.fn.partial;
 	
-	// deliberately specificly hideous
+	// deliberately specifically hideous
 	
 	public function into(fns:Array, memo:Object):Object
 	{

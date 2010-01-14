@@ -1,30 +1,23 @@
-package asx.array { 
-
-  /**
-   * Partition an Array into many divisions. 
-   *  
-   * @param array Array of items to partition
-   * @param iterator Function matching function(value:Object):int; indicating which bucket the item should be placed into.
-   * @return Array of Arrays, containing value as determined by iterator function. 
-   * @example
-   * <listing version="3.0">
-   *  var source:Array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-   *  var partitioned:Array = partitionBy(source, function(value:Number):int {
-   *    return value % 3;
-   *  });
-   *  assertThat(partitioned, equalTo([[0, 3, 6, 9], [1, 4, 7], [2, 5, 8]]));
-   * </listing>
-   */
-  public function partitionBy(array:Array, iterator:Function):Array {
-    var partitions:Array = [];
-    array.forEach(function(value:Object, i:int, a:Array):void {
-      var index:int = iterator(value);
-      var partition:Array = partitions[index];
-      if (!partition) {
-        partition = partitions[index] = [];
-      }
-      partition.push(value);
-    });
-    return partitions;
-  } 
+package asx.array
+{
+	/**
+	 * Separates the items of an Array-like Object into separate Arrays
+	 * determined by the key returned by the iterator Function.
+	 * 
+	 * @param iterable Array-like Object
+	 * @param iterator Function <code>function(item:Object):String</code>
+	 * @return Object
+	 */
+	public function partitionBy(iterable:Object, iterator:Function):Object {
+		var partitions:Object = [];
+		
+		for each (var item:Object in iterable)
+		{
+			var key:Object = iterator(item);
+			var partition:Array = partitions[key] || (partitions[key] = []);
+			partition[partition.length] = item;
+		}
+		
+		return partitions;
+	}
 }

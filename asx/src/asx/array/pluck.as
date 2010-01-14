@@ -14,20 +14,21 @@ package asx.array
      *  assertThat(plucked, equalTo(['waffles', 'crumpets', 'toast']));
      * </listing>
      */
-    public function pluck(array:Array, field:Object):Array
+    public function pluck(iterable:Object, field:Object):Array
     {
         var chain:Array = field is Array ? field as Array : String(field).split('.');
-        return inject(array, chain, pluckIt) as Array;
+        return inject(iterable, chain, $pluckIt) as Array;
     }
 }
 
+import asx.array.map;
 import asx.fn.callProperty;
 import asx.fn.getProperty;
 
-internal function pluckIt(array:Array, field:String):Array
+internal function $pluckIt(iterable:Object, field:String):Array
 {
     var isMethod:Boolean = !!field.match(/^.+\(\)$/);
     field = isMethod ? field.slice(0, -2) : field;
-    return array.map(isMethod ? callProperty(field) : getProperty(field));
+    return map(iterable, isMethod ? callProperty(field) : getProperty(field));
 }
 

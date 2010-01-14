@@ -16,7 +16,7 @@ package asx.array {
    *  assertThat(uppercased, equalTo(["ONCE", "UPON", "A", "TIME"]));
    *  </listing>
    */
-  public function invoke(array:Array, method:String, ...args):Array {  
-    return array.map(callProperty.apply(null, [method].concat(args)));
+  public function invoke(iterable:Object, method:String, ...args):Array {  
+    return map(iterable, callProperty.apply(null, [method].concat(args)));
   } 
 }

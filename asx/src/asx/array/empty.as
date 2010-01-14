@@ -15,7 +15,7 @@ package asx.array {
    *  assertThat(empty(three), false);
    * </listing>
    */
-  public function empty(array:Array):Boolean {
-    return !array || array.length == 0;
+  public function empty(iterable:Object):Boolean {
+    return !iterable || length(iterable) == 0;
   } 
 }

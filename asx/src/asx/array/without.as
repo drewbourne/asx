@@ -13,9 +13,7 @@ package asx.array {
    *  assertThat(without(values, 0, 1), equalTo([2, 3]));
    * </listing>
    */
-  public function without(array:Array, ...items):Array {
-    return array.filter(function(item:Object, i:int, a:Array):Boolean {
-      return !contains(items, item);
-    });
+  public function without(iterable:Object, ...items):Array {
+    return reject(iterable, contains_(items));
   } 
 }

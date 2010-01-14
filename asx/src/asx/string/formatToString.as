@@ -24,7 +24,8 @@ package asx.string
 	}
 }
 
-import asx.string.substitute;	
+import asx.string.substitute;
+import asx.array.map;	
 
 /**
  * Format a field for use with formatToString
@@ -32,9 +33,25 @@ import asx.string.substitute;
 internal function formatToStringField(object:Object, field:String):String
 {
 	var value:Object = object[field];
+	
+	value = formatValue(value);
+	
+	return substitute("{}={}", field, value);
+}
+
+internal function formatValue(value:Object):String 
+{
+	var result:String;
+	
 	if (value is String)
 	{
-		value = '"' + value + '"';
+		result = '"' + value + '"';
 	}
-	return substitute("{}={}", field, value);
+	
+	if (value is Array)
+	{
+		result = '[' + map(value as Array, formatValue).join(', ') + ']'; 
+	}
+	
+	return result;
 }

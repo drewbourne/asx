@@ -5,11 +5,12 @@ package asx.array {
   import asx.fn.partial;
   
   /**
-   * Find the items that are in both arrays.
+   * Find the items that are in both Arrays.
    *  
-   * @param a Array
-   * @param b Array
+   * @param a Array or Array-like Object.
+   * @param b Array or Array-like Object.
    * @return Array of items that were in both Arrays
+   * 
    * @see asx.array.difference
    * @see asx.array.union
    * @example 
@@ -20,12 +21,12 @@ package asx.array {
    *  assertThat(both, equalTo([3, 4]));
    *  </listing>
    */
-  public function intersection(a:Array, b:Array):Array {
+  public function intersection(a:Object, b:Object):Array {
     
     var result:Array = [];
-    
-    result = result.concat(a.filter(aritize(partial(contains, b, _), 1)));
-    result = result.concat(b.filter(aritize(partial(contains, a, _), 1)));
+
+		result = result.concat(select(a, contains_(b)));
+		result = result.concat(select(b, contains_(a)));
     result = unique(result);
     
     return result;

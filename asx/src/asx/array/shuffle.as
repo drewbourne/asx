@@ -1,11 +1,13 @@
 package asx.array { 
   
-  public function shuffle(array:Array):Array {
-    
-    return array.sort(shuffleIt);
+  /**
+   * Randomise the position of items in an Array or Array-like Object. 
+   */
+  public function shuffle(iterable:Object):Array {
+    return toArray(iterable).sort($shuffleIt);
   } 
 }
 
-internal function shuffleIt(a:Object, b:Object):int {
+internal function $shuffleIt(a:Object, b:Object):int {
   return -1 + Math.round(Math.random() * 2);
 }

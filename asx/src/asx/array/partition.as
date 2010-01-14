@@ -15,12 +15,16 @@ package asx.array {
    *  assertThat(partitioned, equalTo([[0, 2, 4, 6, 8], [1, 3, 5, 7, 9]]));
    * </listing>
    */
-  public function partition(array:Array, iterator:Function):Array {
-    var trues:Array = [],
-        falses:Array = [];
-    array.forEach(function(value:Object, i:int, a:Array):void {
-      (iterator(value) ? trues : falses).push(value);
-    });
+  public function partition(iterable:Object, predicate:Function):Array {
+    var trues:Array = [];
+    var falses:Array = [];
+  
+    for each (var item:Object in iterable) 
+      if (predicate(item))
+        trues[trues.length] = item;
+      else
+        falses[falses.length] = item;
+
     return [trues, falses];
   }
 }

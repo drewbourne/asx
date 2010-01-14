@@ -104,6 +104,11 @@ package asx {
           assertThat(unique([1, 1, 2, 3, 5]), equalTo([1, 2, 3, 5]));
           assertThat(unique(['one', 'two', 'two', 'two']), equalTo(['one', 'two']));
         });
+        
+        it('returns an array of items without duplicate field values', function():void {
+          var items:Array = [{ id: 1, value: 1 }, { id: 2, value: 1 }, { id: 3, value: 2 }];
+          assertThat(unique(items, "value"), array(hasProperty("id", 1), hasProperty("id", 3)));
+        });
       });
 
       describe('partition', function():void {

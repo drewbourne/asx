@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sm:SpectacularSpecRunner
-  xmlns:mx="http://www.adobe.com/2006/mxml"
-  xmlns:sf="spectacular.framework.*"
-  xmlns:sm="spectacular.mxml.*"
-  width="100%" 
-  height="100%"
-  creationComplete="go()"
-  >
-  
-  <mx:Script>
-    <![CDATA[
-    
-      import asx.*;
-    
-      import spectacular.framework.*;
+<sm:SpectacularSpecRunner 
+    width="100%"
+    height="100%"
+    creationComplete="go()"
+    xmlns:mx="http://www.adobe.com/2006/mxml"
+    xmlns:sf="spectacular.framework.*"
+    xmlns:sm="spectacular.mxml.*">
 
-      public function go():void {
+    <mx:Script>
+        <![CDATA[
+            import asx.*;
+            
+            import spectacular.framework.*;
+            
+            public function go():void
+            {
+                
+                ArraySpecs();
+                FunctionSpecs();
+                ObjectSpecs();
+                NumberSpecs();
+                StringSpecs();
+                
+                // failing
+                DateSpecs();
+                /*RangeSpecs();*/
+                
+                run();
+            }
+        ]]>
+    </mx:Script>
 
-        ArraySpecs();
-        FunctionSpecs();
-        ObjectSpecs();
-        NumberSpecs();
-        StringSpecs();
-
-        /*RangeSpecs();*/
-        /*DateSpecs();*/
-        
-        run();
-      }
-    
-    ]]>
-  </mx:Script>
-  
 </sm:SpectacularSpecRunner>

@@ -15,7 +15,7 @@ package asx.array {
     var state:Object = initial;
       
     while (predicate(state)) {
-      result.push(transformer(state));
+      result[result.length] = transformer(state)
       state = incrementor(state);
     } 
       

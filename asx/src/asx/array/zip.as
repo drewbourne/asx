@@ -29,13 +29,13 @@ package asx.array {
       return [];
     } 
     
-    var maxLength:Number = Math.max.apply(null, pluck(arrays, 'length'));
+    var minLength:Number = Number(min(map(arrays, length)));
     var zipped:Array = [];
     
-    for (var i:int = 0; i < maxLength; i++) {
+    for (var i:int = 0; i < minLength; i++) {
       var zipper:Array = zipped[i] = [];
       for (var j:int = 0; j < arrayCount; j++) {
-        zipper.push(arrays[j][i]);
+        zipper[zipper.length] = arrays[j][i];
       }
     }
     return zipped;

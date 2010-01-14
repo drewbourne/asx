@@ -3,7 +3,7 @@ package asx.fn
 	/**
 	 * No OP. Do Nothing. Nada. Donuts.
 	 */
-	public function noop():void
+	public function noop(...rest):void
 	{
 	}
 }

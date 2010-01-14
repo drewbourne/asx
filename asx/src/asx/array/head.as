@@ -1,10 +1,10 @@
 package asx.array { 
   
   /**
-   * Returns item at index 0 of an Array, or null.
+   * Returns item at index 0 of an Array-like Object.
    *  
-   * @param array Array
-   * @return First item in Array, or null if the array is empty.
+   * @param iterable Array or Array-like object.
+   * @return First item in iterable, or null if the iterable is empty.
    * @example
    *  <listing version="3.0">
    *  var values:Array = [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]];
@@ -14,11 +14,11 @@ package asx.array {
    *  assertThat(result, equalTo(["A", "B", "C"]));
    *  
    *  // first item from each of the value arrays
-   *  result = values.map(aritize(head, 1));
+   *  result = map(values, head);
    *  assertThat(result, equalTo(["A", "D", "G"]));
    *  </listing>
    */ 
-  public function head(array:Array):Object {
-    return array[0] || null;
+  public function head(iterable:Object):Object {
+    return empty(iterable) ? null : iterable[0];
   }
 }

@@ -12,10 +12,10 @@ package asx.array {
    *  assertThat(uniq, equalTo([1, 2, 3, 5, 8]));
    *  </listing>
    */
-  public function unique(array:Array, field:String=null):Array {
+  public function unique(iterable:Object, field:String=null):Array {
     return field 
-      ? inject([], array, uniqueFieldIterator(field)) as Array
-      : inject([], array, uniqueIterator) as Array;
+      ? inject([], iterable, uniqueFieldIterator(field)) as Array
+      : inject([], iterable, uniqueIterator) as Array;
   }
 }
 
@@ -23,7 +23,7 @@ import asx.array.contains;
 
 internal function uniqueIterator(memo:Array, value:Object):Array {
   if (!contains(memo, value)) {
-    memo.push(value);
+    memo[memo.length] = value;
   }
   return memo;
 }
@@ -36,8 +36,8 @@ internal function uniqueFieldIterator(field:String):Function
     var fieldValue:* = value[field];
     if (!contains(fieldValues, fieldValue))
     {
-      fieldValues.push(fieldValue);
-      memo.push(value);
+      fieldValues[fieldValues.length] = fieldValue;
+      memo[memo.length] = value;
     }
     return memo;
   };
