@@ -9,9 +9,12 @@ package asx.array
    * @param iterator Function <code>function(result:*, next:Function):void</code>
    * @param complete Function <code>function(results:Array):void</code>  
    */
-  internal function mapParallelized(iterable:Object, iterator:Function, complete:Function):void {
+  public function mapParallelized(iterable:Object, iterator:Function, complete:Function):void {
     var items:Array = toArray(iterable);
     var results:Array = [];
+    
+    if (items.length == 0)
+      complete(results);    
     
     function iterate(item:Object):void {
       iterator(item, progress());

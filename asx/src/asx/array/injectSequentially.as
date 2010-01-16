@@ -5,16 +5,16 @@ package asx.array {
    * sequentially waiting until the previous item has completed, and then calling
    * the complete Function with the results.
    * 
+   * @param memo Initial Object give to iterator
    * @param iterable Array or Array-like Object 
-   * @param iterator Function <code>function(result:*, next:Function):void</code>
-   * @param complete Function <code>function(results:Array):void</code>  
+   * @param iterator Function <code>function(memo:*, result:*, next:Function):void</code>
+   * @param complete Function <code>function(results:*):void</code>  
    */
-  public function mapSequentially(iterable:Object, iterator:Function, complete:Function):void {
+  public function injectSequentially(memo:Object, iterable:Object, iterator:Function, complete:Function):void {
     var items:Array = toArray(iterable);
-    var results:Array = []; 
     
     if (items.length == 0)
-      complete(results);
+      complete(memo);    
     
     function next():Object {
       return items.shift();
@@ -22,16 +22,16 @@ package asx.array {
     
     function iterate():void {
       if (!empty(items)) {
-        iterator(next(), progress());
+        iterator(memo, next(), progress());
       }
       else {
-        complete(results);
+        complete(memo);
       }
     }
     
     function progress():Function {
       return function(result:Object):void {
-        results[results.length] = result;
+        memo = result;
         iterate()
       };
     }
