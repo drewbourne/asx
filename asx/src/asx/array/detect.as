@@ -17,9 +17,9 @@ package asx.array {
 	 *  assertThat(value, equalTo(4));
 	 * </listing>
 	 */
-	public function detect(iterable:Object, iterator:Function):Object {
+	public function detect(iterable:Object, iterator:Function, ...rest):Object {
 		for each (var item:Object in iterable)
-			if (iterator(item))
+			if (iterator.apply(null, [item].concat(rest)))
 				return item;
 
 		return null;
