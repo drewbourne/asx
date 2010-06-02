@@ -20,7 +20,10 @@ package asx.string
 	 */
 	public function formatToString(object:Object, type:String, fields:Array = null):String
 	{
-		return substitute("[{} {}]", type, (fields || []).map(partial(formatToStringField, object, _)).join(" "));
+		return substitute(
+		  (!fields || fields.length == 0) ? "[{}]" :"[{} {}]", 
+		  type, 
+		  (fields || []).map(partial(formatToStringField, object, _)).join(" "));
 	}
 }
 
@@ -41,7 +44,7 @@ internal function formatToStringField(object:Object, field:String):String
 
 internal function formatValue(value:Object):String 
 {
-	var result:String;
+	var result:String = String(value);
 	
 	if (value is String)
 	{

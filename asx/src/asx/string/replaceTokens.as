@@ -25,4 +25,4 @@ package asx.string
 	}
 }
 
-internal var DEFAULT_TOKEN_PATTERN:RegExp = /{([^}]+)}/g;
+internal var DEFAULT_TOKEN_PATTERN:RegExp = /{([^\s{}]+)}/g;
