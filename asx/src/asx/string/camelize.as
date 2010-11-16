@@ -1,25 +1,42 @@
 package asx.string
 {
-  // FIXME use the awesomeness of the other functions, this should much shorter
-  // TODO asdoc
-  // TODO example
-  /**
-   * CamelCases
-   */
-  public function camelize(value:String, lowerCaseFirstWord:Boolean=false):String
-  {
-    //return lowerCaseFirstWord
-    //  ? value.slice(0, 1).toLowerCase() + value.slice(1).replace(underScoresHyphensAndWhitespace, groupToUpperCase)
-    //  : value.replace(underScoresHyphensAndWhitespace, groupToUpperCase);
+	import asx.array.map;
+	
+	import flash.display.JointStyle;
 
-    var camelized:String = value.split(underscoresHyphensAndWhitespace).map(capitalizeWord).join('');
-    return lowerCaseFirstWord ? camelized.slice(0, 1).toLowerCase() + camelized.slice(1) : camelized;
-  }
+	/**
+	 * Converts a String with a word or phrase to a CamelCaseString.
+	 * 
+	 * Words can be separated by spaces, underscores and hyphens.
+	 * 
+	 * @param value String to camelize.
+	 * @param lowerCaseFirstWord Indicates if the first word should be lowercase or camel cased. 
+	 * 
+	 * @example
+	 * <listing version="3.0">
+	 *	trace(camelize("I can has camel-cases"));
+	 *	// ICanHasCamelCases
+	 * 
+	 *	trace(camelize("all your camel cases", true));	
+	 *	// allYourCamelCases
+	 * 
+	 *	trace(camelize("all_the_hyphens_are_goners"));
+	 *	// allTheHyphensAreGoners
+	 * </listing>
+	 * 
+	 * @author drewbourne
+	 */
+	public function camelize(value:String, lowerCaseFirstWord:Boolean=false):String
+	{
+		const underscoresHyphensAndWhitespace:RegExp = /[_-\s]+/g;
+		
+		var camelized:String = map(
+			value.split(underscoresHyphensAndWhitespace),
+			capitalize)
+			.join("");
+			
+		return lowerCaseFirstWord 
+			? camelized.slice(0, 1).toLowerCase() + camelized.slice(1) 
+			: camelized;
+	}
 }
-
-import asx.fn._;
-import asx.fn.partial;
-import asx.string.capitalize;
-
-internal const underscoresHyphensAndWhitespace:RegExp = /[_-\s]+/g;
-internal const capitalizeWord:Function = partial(capitalize, _);
