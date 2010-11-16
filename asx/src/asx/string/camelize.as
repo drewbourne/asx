@@ -1,8 +1,6 @@
 package asx.string
 {
 	import asx.array.map;
-	
-	import flash.display.JointStyle;
 
 	/**
 	 * Converts a String with a word or phrase to a CamelCaseString.
