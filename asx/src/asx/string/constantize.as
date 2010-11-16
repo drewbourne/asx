@@ -12,14 +12,20 @@ package asx.string
 	 * 	
 	 * 	var myOtherValue:String = "ACapitalizedMonstrosity";
 	 * 	trace(constantize(myOtherValye));	// Traces 'A_CAPITALIZED_MONSTROSITY' to the console
+	 * 
+	 * 	var urlRequestName:String = "URLRequest";
+	 * 	trace(constantize(urlRequestName)); // Traces 'URL_REQUEST' to the console
 	 * </listing>
 	 * 
-	 * @see asx.string.camelize
+	 * @see asx.string.camelize()
 	 * 
 	 * @author nrobson
+	 * @author drewbourne
 	 */
 	public function constantize(value:String):String
 	{
-		return (value.charAt(0) + value.substring(1).replace(/([A-Z])/g, "_$1")).toUpperCase();
+		return value.replace(/([A-Z]+)?([A-Z]{1})/g, function():String {
+			return arguments[1] + "_" + arguments[2];
+		}).toUpperCase();
 	}
 }
