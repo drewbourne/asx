@@ -8,8 +8,6 @@ package asx.array
   import flash.utils.getTimer;
   import flash.utils.setTimeout;
   
-  import mx.automation.events.EventDetails;
-  
   import org.flexunit.assertThat;
   import org.flexunit.async.Async;
   import org.hamcrest.collection.array;
