@@ -9,5 +9,5 @@ package asx.number {
    */
   public function mod(n:Number, divisor:Number):Number {
     return n % divisor;
-  } 
+  }
 }
