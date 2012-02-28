@@ -7,7 +7,7 @@ package asx.fn
 	 * @param passArgsAndResultTo <code>function(args:Array, result:*):*</code>
 	 * @result Function <code>function(...args):*</code>
 	 */
-	function after(callingThis:Function, passArgsAndResultTo:Function):Function
+	public function after(callingThis:Function, passArgsAndResultTo:Function):Function
 	{
 		return function(...args):*
 		{
