@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application 
 	layout="absolute"
+	width="1000"
+	height="1000"
 	creationComplete="creationCompleteHandler()"
 	xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:adobe="http://www.adobe.com/2009/flexUnitUIRunner">
 
 	<mx:Script>
 		<![CDATA[
-		  import asx.fn.*;
+		  	import asx.fn.*;
 			import asx.array.*;
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
@@ -68,6 +70,9 @@
 					// fn
 					AfterTest, 
 					BeforeTest,
+					DebounceTest,
+					DeferTest,
+					ThrottleTest,
 					YTest
 					);
 			}
