@@ -19,7 +19,7 @@ package asx.fn
 		public function invokes_the_original_function_after_debounced_function_stops_being_called_for_wait_milliseconds():void 
 		{
 			var dispatcher:EventDispatcher = new EventDispatcher();
-			Async.proceedOnEvent(this, dispatcher, Event.COMPLETE, 1000);
+			Async.proceedOnEvent(this, dispatcher, Event.COMPLETE, 1500);
 
 			var start:int = getTimer();
 			var complete:Function = function():void { 
