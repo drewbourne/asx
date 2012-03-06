@@ -11,6 +11,8 @@
 		<![CDATA[
 		  	import asx.fn.*;
 			import asx.array.*;
+			import asx.datetime.*;
+			import asx.datetime.base.*;
 			import asx.object.*;
 
 			import org.flexunit.listeners.UIListener;
@@ -24,7 +26,7 @@
 				core.addListener(new UIListener(testRunnerBase));
 				
 				core.run(
-				  // array
+				 	// array
 					CompactTest,
 					ContainsTest,
 					Contains_Test,
@@ -68,7 +70,14 @@
 					InjectTest,
 					SelectTest,
 					RejectTest,
-					SequentiallyTest,
+					// SequentiallyTest, // FIXME too slow. 
+					// datetime
+					DurationTest,
+					InstantTest,
+					TimeZoneTest,
+					// datetime.base
+					AbstractDurationTest,
+					AbstractInstantTest,
 					// fn
 					AfterTest, 
 					BeforeTest,
