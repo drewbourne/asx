@@ -11,6 +11,8 @@
 		<![CDATA[
 		  	import asx.fn.*;
 			import asx.array.*;
+			import asx.object.*;
+
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
 			
@@ -73,7 +75,12 @@
 					DebounceTest,
 					DeferTest,
 					ThrottleTest,
-					YTest
+					YTest,
+					// object
+					ClearTest,
+					KeysTest,
+					MergeTest,
+					ValuesTest
 					);
 			}
 		]]>
