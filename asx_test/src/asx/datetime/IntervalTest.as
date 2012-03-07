@@ -3,7 +3,7 @@ package asx.datetime
 	public class IntervalTest
 	{
 		[Test]
-		public function define():void 
+		public function plus_():void
 		{
 
 		}
