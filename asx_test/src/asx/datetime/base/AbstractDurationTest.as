@@ -38,7 +38,7 @@ package asx.datetime.base
 		}
 
 		[Test]
-		public function equals_with_different_millis_should_be_equal():void 
+		public function equals_with_different_millis_should_not_be_equal():void 
 		{
 			var duration1:Duration = new Duration(millis);
 			var duration2:Duration = new Duration(millis + 1);
