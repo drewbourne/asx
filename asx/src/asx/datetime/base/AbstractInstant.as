@@ -3,7 +3,7 @@ package asx.datetime.base
 	import asx.datetime.*;
 	import asx.string.formatToString;
 
-	public class AbstractInstant
+	public class AbstractInstant implements IReadableInstant
 	{
 		public function AbstractInstant(millis:Number, timezone:TimeZone)
 		{

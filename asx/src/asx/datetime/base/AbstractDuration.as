@@ -3,7 +3,7 @@ package asx.datetime.base
 	import asx.datetime.*;
 	import asx.string.formatToString;
 
-	public class AbstractDuration
+	public class AbstractDuration implements IReadableDuration
 	{
 		public function AbstractDuration(millis:Number)
 		{
