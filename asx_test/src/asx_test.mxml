@@ -74,15 +74,18 @@
 					// datetime
 					DurationTest,
 					InstantTest,
+					IntervalTest,
 					TimeZoneTest,
 					// datetime.base
 					AbstractDurationTest,
 					AbstractInstantTest,
+					AbstractIntervalTest,
 					// fn
 					AfterTest, 
 					BeforeTest,
 					DebounceTest,
 					DeferTest,
+					ExecuteTest,
 					ThrottleTest,
 					YTest,
 					// object
