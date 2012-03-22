@@ -198,5 +198,83 @@ package asx.datetime.base
 			assertThat(".overlaps(after)", interval.overlaps(after), isFalse());
 			assertThat("after.overlaps()", after.overlaps(interval), isFalse());
 		}
+
+		[Test]
+		public function isAfterInterval():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var before:Interval = new Interval(START_MILLIS - 2, START_MILLIS - 1);
+			var after:Interval = new Interval(END_MILLIS + 1, END_MILLIS + 2);
+
+			assertThat(".isAfterInterval(before)", interval.isAfterInterval(before), isTrue());
+			assertThat(".isAfterInterval(after)", interval.isAfterInterval(after), isFalse());
+		}
+
+		[Test]
+		public function isAfterInstant():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var before:Instant = new Instant(START_MILLIS - 1);
+			var after:Instant = new Instant(END_MILLIS + 1);
+
+			assertThat(".isAfterInstant(before)", interval.isAfterInstant(before), isTrue());
+			assertThat(".isAfterInstant(after)", interval.isAfterInstant(after), isFalse());
+		}
+
+		[Test]
+		public function isBeforeInterval():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var before:Interval = new Interval(START_MILLIS - 2, START_MILLIS - 1);
+			var after:Interval = new Interval(END_MILLIS + 1, END_MILLIS + 2);
+
+			assertThat(".isBeforeInterval(before)", interval.isBeforeInterval(before), isFalse());
+			assertThat(".isBeforeInterval(after)", interval.isBeforeInterval(after), isTrue());
+		}
+
+		[Test]
+		public function isBeforeInstant():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var before:Instant = new Instant(START_MILLIS - 1);
+			var after:Instant = new Instant(END_MILLIS + 1);
+
+			assertThat(".isBeforeInstant(before)", interval.isBeforeInstant(before), isFalse());
+			assertThat(".isBeforeInstant(after)", interval.isBeforeInstant(after), isTrue());
+		}
+
+		[Test]
+		public function toDuration_should_have_millis_between_startMillis_and_endMillis():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var duration:Duration = interval.toDuration();
+
+			assertThat(duration.millis, equalTo(END_MILLIS - START_MILLIS));
+		}
+
+		[Test]
+		public function toDurationMillis_should_have_millis_between_startMillis_and_endMillis():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+
+			assertThat(interval.toDurationMillis(), equalTo(END_MILLIS - START_MILLIS));
+		}
+
+		[Test]
+		public function toInterval_should_be_equivalent_interval():void 
+		{
+			var base:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var interval:Interval = base.toInterval();
+
+			assertThat(".equals()", interval.equals(base));
+		}
+
+		[Test]
+		public function valueOf_should_be_self():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+
+			assertThat(interval.valueOf(), equalTo(interval));
+		}
 	}
 }

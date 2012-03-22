@@ -94,44 +94,44 @@ package asx.datetime.base
 
 		public function isAfterInterval(interval:IReadableInterval):Boolean
 		{
-			return false;
+			return startMillis > interval.startMillis;
 		}
 
 		public function isAfterInstant(instant:IReadableInstant):Boolean
 		{
-			return false;
+			return startMillis > instant.millis;
 		}
 
 		public function isBeforeInterval(interval:IReadableInterval):Boolean
 		{
-			return false;
+			return endMillis < interval.endMillis;
 		}
 
 		public function isBeforeInstant(instant:IReadableInstant):Boolean
 		{
-			return false;
+			return endMillis < instant.millis;
 		}
 
 		public function toDuration():Duration
 		{
-			return null;
+			return new Duration(toDurationMillis());
 		}
 
 		public function toDurationMillis():Number
 		{
-			return 0;
+			return endMillis - startMillis;
 		}
 
 		public function toInterval():Interval
 		{
-			return null;
+			return new Interval(startMillis, endMillis);
 		}
 
 		// function toPeriod():Period;
 
 		public function valueOf():Object
 		{
-			return null;
+			return this;
 		}
 
 		public function toString():String
