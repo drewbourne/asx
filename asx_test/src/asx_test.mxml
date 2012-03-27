@@ -14,6 +14,7 @@
 			import asx.datetime.*;
 			import asx.datetime.base.*;
 			import asx.object.*;
+			import asx.string.*;
 
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
@@ -92,7 +93,13 @@
 					ClearTest,
 					KeysTest,
 					MergeTest,
-					ValuesTest
+					ValuesTest, 
+					// string
+					CamelizeTest,
+					CapitalizeTest,
+					ConstantizeTest,
+					CompareToInNaturalOrderTest,
+					IsEmptyStringTest
 					);
 			}
 		]]>
