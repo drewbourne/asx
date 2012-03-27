@@ -82,23 +82,35 @@ package asx.datetime
 		// Creates a new interval with the specified start instant.
 		public function withStart(start:IReadableInstant):Interval 
 		{
-			return null;
+			if (!start)
+			{
+				// TODO sets start to now. 
+				return null;
+			}
+
+			return withStartMillis(start.millis);
 		}
 
 		// Creates a new interval with the specified end instant.
 		public function withEnd(end:IReadableInstant):Interval 
 		{
-			return null;
+			if (!end)
+			{
+				// TODO sets start to now. 
+				return null;
+			}
+
+			return withEndMillis(end.millis);
 		}
 
-		public function withStartMillis(startMillis:Number):Interval 
+		public function withStartMillis(millis:Number):Interval 
 		{
-			return null;
+			return new Interval(millis, endMillis);
 		}
 
-		public function withEndMillis(endMillis:Number):Interval
+		public function withEndMillis(millis:Number):Interval
 		{
-			return null;
+			return new Interval(startMillis, millis);
 		}
 
 		override public function toString():String

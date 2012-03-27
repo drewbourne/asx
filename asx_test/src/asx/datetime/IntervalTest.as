@@ -5,6 +5,7 @@ package asx.datetime
 
 	import org.flexunit.assertThat;
 	import org.flexunit.asserts.fail;
+	import org.hamcrest.core.not;
 	import org.hamcrest.core.throws;
 	import org.hamcrest.object.equalTo;
 	import org.hamcrest.object.instanceOf;
@@ -61,7 +62,7 @@ package asx.datetime
 			assertThat(".abuts(after)", interval.abuts(after), isFalse());	
 		}
 
-		[Ignore]
+		[Ignore(description="requires a millis provider")]
 		[Test]
 		public function gap_with_null_should_return_interval_to_now():void 
 		{
@@ -169,27 +170,63 @@ package asx.datetime
 		}
 
 		[Test]
-		public function withStart():void 
-		{
-
-		}
-
-		[Test]
-		public function withEnd():void 
-		{
-
-		}
-
-		[Test]
 		public function withStartMillis():void 
 		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var result:Interval = interval.withStartMillis(START_MILLIS - 1);
+
+			assertThat(".startMillis", result.startMillis, equalTo(START_MILLIS - 1));
+			assertThat(".endMillis", result.endMillis, equalTo(END_MILLIS));
+			assertThat("returns new Interval", result, not(equalTo(interval)));
+		}
+
+		[Test]
+		public function withEndMillis():void
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var result:Interval = interval.withEndMillis(END_MILLIS - 1);
+
+			assertThat(".startMillis", result.startMillis, equalTo(START_MILLIS));
+			assertThat(".endMillis", result.endMillis, equalTo(END_MILLIS - 1));
+			assertThat("returns new Interval", result, not(equalTo(interval)));
+		}
+
+		[Ignore(description="requires a millis provider")]
+		[Test]
+		public function withStart_with_null():void 
+		{
 
 		}
 
 		[Test]
-		public function withEndMillis():void 
+		public function withStart_with_instant():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var instant:Instant = new Instant(START_MILLIS - 1);
+			var result:Interval = interval.withStart(instant);
+
+			assertThat(".startMillis", result.startMillis, equalTo(START_MILLIS - 1))
+			assertThat(".endMillis", result.endMillis, equalTo(END_MILLIS));
+			assertThat("returns new Interval", result, not(equalTo(interval)));
+		}
+
+		[Ignore(description="requires a millis provider")]
+		[Test]
+		public function withEnd_with_null():void 
 		{
 
+		}
+
+		[Test]
+		public function withEnd_with_instant():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var instant:Instant = new Instant(END_MILLIS + 1);
+			var result:Interval = interval.withEnd(instant);
+
+			assertThat(".startMillis", result.startMillis, equalTo(START_MILLIS))
+			assertThat(".endMillis", result.endMillis, equalTo(END_MILLIS + 1));
+			assertThat("returns new Interval", result, not(equalTo(interval)));
 		}
 	}
 }
