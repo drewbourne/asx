@@ -52,13 +52,23 @@ package asx.datetime
 		// Creates a new interval with the specified duration after the start instant.
 		public function withDurationAfterStart(duration:IReadableDuration):Interval
 		{
-			return null;
+			if (duration && duration.millis < 0)
+			{
+				throw new ArgumentError("Interval#withDurationAfterStart() received negative Duration: " + duration);
+			}
+
+			return new Interval(startMillis, startMillis + (duration ? duration.millis : 0));
 		}
 
 		// Creates a new interval with the specified duration before the end instant.
 		public function withDurationBeforeEnd(duration:IReadableDuration):Interval
 		{
-			return null;
+			if (duration && duration.millis < 0)
+			{
+				throw new ArgumentError("Interval#withDurationBeforeEnd() received negative Duration: " + duration);
+			}
+
+			return new Interval(endMillis - (duration ? duration.millis : 0), endMillis);
 		}
 
 		// public function withPeriodAfterStart(start:IReadablePeriod):Interval 

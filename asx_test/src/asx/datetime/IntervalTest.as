@@ -17,6 +17,7 @@ package asx.datetime
 	{
 		private const START_MILLIS:Number = 100;
 		private const END_MILLIS:Number = 200;
+		private const DURATION_MILLIS:Number = 500;
 
 		[Test]
 		public function abuts_with_zero_duration():void 
@@ -60,6 +61,7 @@ package asx.datetime
 			assertThat(".abuts(after)", interval.abuts(after), isFalse());	
 		}
 
+		[Ignore]
 		[Test]
 		public function gap_with_null_should_return_interval_to_now():void 
 		{
@@ -107,15 +109,63 @@ package asx.datetime
 		}
 
 		[Test]
-		public function withDurationAfterStart():void 
+		public function withDurationAfterStart_with_null():void 
 		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var zero:Interval = interval.withDurationAfterStart(null);
 
+			assertThat(".startMillis", zero.startMillis, equalTo(START_MILLIS));
+			assertThat(".endMillis", zero.endMillis, equalTo(START_MILLIS));
 		}
 
 		[Test]
-		public function withDurationBeforeEnd():void 
+		public function withDurationAfterStart_with_positive_duration():void 
 		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var duration:Duration = new Duration(DURATION_MILLIS);
+			var after:Interval = interval.withDurationAfterStart(duration);
 
+			assertThat(".startMillis", after.startMillis, equalTo(START_MILLIS));
+			assertThat(".endMillis", after.endMillis, equalTo(START_MILLIS + DURATION_MILLIS));
+		}
+
+		[Test(expected="ArgumentError")]
+		public function withDurationAfterStart_with_negative_duration():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var duration:Duration = new Duration(-DURATION_MILLIS);
+			
+			interval.withDurationAfterStart(duration);
+		}
+
+		[Test]
+		public function withDurationBeforeEnd_with_null():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var zero:Interval = interval.withDurationBeforeEnd(null);
+
+			assertThat(".startMillis", zero.startMillis, equalTo(END_MILLIS));
+			assertThat(".endMillis", zero.endMillis, equalTo(END_MILLIS));
+		}
+
+		[Test]
+		public function withDurationBeforeEnd_with_positive_duration():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var duration:Duration = new Duration(DURATION_MILLIS);
+			var after:Interval = interval.withDurationBeforeEnd(duration);
+
+			assertThat(".startMillis", after.startMillis, equalTo(END_MILLIS - DURATION_MILLIS));
+			assertThat(".endMillis", after.endMillis, equalTo(END_MILLIS));
+		}
+
+		[Test(expected="ArgumentError")]
+		public function withDurationBeforeEnd_with_negative_duration():void 
+		{
+			var interval:Interval = new Interval(START_MILLIS, END_MILLIS);
+			var duration:Duration = new Duration(-DURATION_MILLIS);
+			
+			interval.withDurationBeforeEnd(duration);
 		}
 
 		[Test]
