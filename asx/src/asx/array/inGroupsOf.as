@@ -1,27 +1,27 @@
 package asx.array
 {
 	/**
-	 *  
+	 *
 	 */
 	public function inGroupsOf(iterable:Object, size:int):Array
 	{
-	  var i:int = 0;
-	  var group:Array = [];
-		var groups:Array = [group];
-
-		for each (var item:Object in iterable)
+		var i:int = size;
+		var group:Array;
+		var groups:Array = [];
+		
+		for each(var item:Object in iterable)
 		{
-		  group[group.length] = item;
-		  i++;
-		  
-			if (i == size)
+			if( i == size )
 			{
-			  i = 0;
+				i = 0;
 				group = [];
 				groups[groups.length] = group;
 			}
-		}
 			
+			group[group.length] = item;
+			i++;
+		}
+		
 		return groups;
 	}
 }
