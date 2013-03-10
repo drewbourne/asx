@@ -12,7 +12,8 @@ package asx.fn {
     var subpos:Array = [];
     var value:*;
     for (var i:int = 0; i < args.length; i++) {
-      if (args[i] === undefined) {
+      if (args[i] === undefined || args[i] === _) {
+        args[i] = _;
         subpos.push(i);
       }
     }
@@ -22,11 +23,12 @@ package asx.fn {
         specialized[subpos[i]] = more[i];
       }
       for (var j:int = 0; j < specialized.length; j++) {
-        if (specialized[j] === undefined) {
+        if (specialized[j] === undefined || specialized[j] === _) {
+          specialized[j] = _;
           return partial.apply(null, [fn].concat(specialized));
         }
       }
-      return fn.apply(null, specialized.slice(0, args.length));
+      return fn.apply(null, specialized);
     }
   }; 
 }
