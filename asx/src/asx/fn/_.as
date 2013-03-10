@@ -5,5 +5,7 @@ package asx.fn {
    *  
    * @see asx.fn.partial
    */
-  public var _:* = undefined; 
+  // don't use undefined because the AVM automatically casts undefined to
+  // false-y values and we lose the uniqueness of the constant; 
+  public var _:Object = {};
 }
