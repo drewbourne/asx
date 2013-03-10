@@ -1,4 +1,5 @@
 package asx.array {
+	import asx.fn._;
 	
 	/**
 	 * Injects the memo value into an iterator function that is applied to every 
@@ -21,11 +22,14 @@ package asx.array {
 	 *  });
 	 *  </listing>
 	 */
-	public function inject(memo:Object, iterable:Object, iterator:Function):Object {
+	public function inject(seed:Object, iterable:Object, iterator:Function):Object {
 		var i:int = 0;
 		var n:int = iterator.length;
+		var memo:Object = seed;
 		for each (var value:Object in iterable) {
-			memo = iterator.apply(null, [ memo, value, i ].slice(0, Math.max(2, n)));
+			memo = seed == _ && i == 0 ?
+				value :
+				iterator.apply(null, [ memo, value, i ].slice(0, Math.max(2, n)));
 			i++;
 		}
 		return memo;
