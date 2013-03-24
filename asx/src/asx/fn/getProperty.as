@@ -1,4 +1,5 @@
 package asx.fn {  
+	import asx.array.inject;
   
   /**
    * Returns a function that when called will get the property on the item.
@@ -10,9 +11,15 @@ package asx.fn {
    *  assertThat(results, equalTo([3, 2, 1]));
    *  </listing>
    */
-  public function getProperty(property:String):Function {
-    return function(item:Object, ...rest):Object {
-      return item[property];
-    };
+  public function getProperty(property:Object):Function {
+	var chain:Array = property is Array ? property as Array : String(property).split('.');
+	
+	const getProp:Function = function(item:Object, field:*):Object {
+		return item[field];
+	};
+	
+	return function(item:Object, ...rest):Object {
+		return inject(item, chain, getProp);
+	};
   } 
 }
