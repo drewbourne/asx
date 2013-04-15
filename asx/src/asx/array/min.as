@@ -1,24 +1,26 @@
 package asx.array
 {
+	import asx.fn._;
+
   /**
    * Find the min item, or item with the min field value. 
    */
   public function min(iterable:Object, field:String=null):Object
   {
-    var result:Object;
+    var result:Object = _;
     var item:Object;
     
     if (field)
     {
       for each (item in iterable)
       {
-        if (!result)
+        if (result === _)
         {
-          result = item;
+          result = item[field];
         }
-        else if (item && item[field] < result[field])
+        else if (item && item[field] < result)
         {
-          result = item;
+          result = item[field];
         }
       }
     }
@@ -26,7 +28,7 @@ package asx.array
     {
       for each (item in iterable)
       {
-        if (!result)
+        if (result === _)
         {
           result = item;
         }
