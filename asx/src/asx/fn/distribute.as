@@ -1,11 +1,13 @@
 package asx.fn
 {
+	import asx.array.map;
+
 	/**
 	 * @author ptaylor
 	 */
-	public function distribute(fn:Function):Function {
-		return function(array:Array):* {
-			return fn.apply(null, array);
+	public function distribute(...fns):Function {
+		return function(...args):Array {
+			return map(fns, callFunction.apply(null, args));
 		}
 	}
 }

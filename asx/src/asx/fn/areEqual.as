@@ -15,6 +15,6 @@ package asx.fn
 		
 		const permutations:Array = permutate(items, 2);
 		
-		return allOf(permutations, distribute(areEqual));
+		return allOf(permutations, apply(areEqual));
 	}
 }
