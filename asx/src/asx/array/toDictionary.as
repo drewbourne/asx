@@ -1,5 +1,6 @@
 package asx.array
 {
+	import asx.fn.I;
 	import asx.fn.getProperty;
 	
 	import flash.utils.Dictionary;
@@ -20,7 +21,7 @@ package asx.array
 	 * 	trace(dict[3].value); // 5
 	 * </listing>
 	 */
-	public function toDictionary(iterable:Object, key:Object):Dictionary
+	public function toDictionary(iterable:Object, key:Object, value:Object = null):Dictionary
 	{
 		var dict:Dictionary = new Dictionary();
 		
@@ -29,8 +30,10 @@ package asx.array
 			? key as Function
 			: getProperty(String(key));
 		
+		var valFn:Function = value is Function ? value as Function : I;
+		
 		for each (var item:Object in iterable)
-			dict[ keyFn(item) ] = item;
+			dict[ keyFn(item) ] = valFn(item);
 			
 		return dict;
 	}
