@@ -12,6 +12,10 @@ package asx.fn
 					return node.childIndex();
 				case 'elements':
 					return node.elements();
+				case 'localName':
+					return node.localName();
+				case 'toString':
+					return node.toString();
 			}
 		};
 	}
