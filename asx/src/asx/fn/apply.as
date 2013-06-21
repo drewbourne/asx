@@ -5,7 +5,7 @@ package asx.fn
 	 */
 	public function apply(fn:Function):Function {
 		return function(array:Array):* {
-			return fn.apply(null, array);
+			return fn.apply(null, array || []);
 		}
 	}
 }
