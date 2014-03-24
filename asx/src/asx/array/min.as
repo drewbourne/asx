@@ -26,7 +26,7 @@ package asx.array
     {
       for each (item in iterable)
       {
-        if (!result)
+        if (!result && !(result is Number))
         {
           result = item;
         }
