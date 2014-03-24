@@ -9,8 +9,8 @@ package asx.array
     [Test]
     public function min_withArray_returnsTheMinimumItem():void 
     {
-      assertThat(min([1, 101, 11, 10, 100]), equalTo(1));
-      assertThat(min(['1', '101', '11', '10', '100']), equalTo('1'));
+      assertThat(min([1, 101, 11, 10, 0, 100]), equalTo(0));
+      assertThat(min(['1', '101', '11', '10', '0', '100']), equalTo('0'));
     }
     
     [Test]
